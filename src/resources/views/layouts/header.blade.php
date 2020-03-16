@@ -1,24 +1,21 @@
-<header class="py-5">
+<header class="py-5 border-b shadow-sm">
     <div class="container">
         <div class="flex justify-between items-center">
-            <div class="flex items-center">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo Ma fiche de Révision" class="w-48" />
-
-                <nav class="ml-10">
-                    <ul class="menu-left flex items-center">
-                        <li>Fonctionnement</li>
-                        <li>Nos fiches</li>
-                    </ul>
-                </nav>
-            </div>
+            <h1 class="font-medium text-2xl">Ma Fiche de Révision</h1>
 
             <nav>
-                <ul class="menu-right flex items-center">
+                <ul class="flex items-center">
                     <li>
-                        <a href="#" class="font-medium">Connexion</a>
+                        <a href="#">Fonctionnement</a>
                     </li>
                     <li>
-                        <a href="#" class="bg-blue-500 px-4 py-3 rounded shadow text-white font-medium hover:bg-blue-600">Inscription</a>
+                        <a href="#">Nos fiches</a>
+                    </li>
+                    <li>
+                        <a href="#">Connexion</a>
+                    </li>
+                    <li>
+                        <a href="#">Inscription</a>
                     </li>
                 </ul>
             </nav>

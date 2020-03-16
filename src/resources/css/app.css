@@ -2,12 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Header */
-.menu-left li:nth-child(n-2) {
-    @apply mr-5;
+@font-face {
+    font-family: "Airbnb Cereal App";
+    src: url('../fonts/AirbnbCerealBlack.ttf') format('woff')
+         url('../fonts/AirbnbCerealBold.ttf') format('woff')
+         url('../fonts/AirbnbCerealBook.ttf') format('woff')
+         url('../fonts/AirbnbCerealExtraBold.ttf') format('woff')
+         url('../fonts/AirbnbCerealLight.ttf') format('woff')
+         url('../fonts/AirbnbCerealMedium.ttf') format('woff');
+}
+
+html, body {
+    font-family: 'Airbnb Cereal App', Arial, sans-serif;
+    color: #262626;
 }
 
 /* Header */
-.menu-right li:nth-child(n+2) {
-    @apply ml-5;
+nav ul li:nth-child(n+2) {
+    @apply ml-10;
 }
