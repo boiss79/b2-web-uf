@@ -12,4 +12,21 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+   .postCss('resources/css/app.css', 'public/css', [
+      require('tailwindcss'),
+      ...process.env.NODE_ENV === 'production' ? [
+        require('@fullhuman/postcss-purgecss')({
+            content: [
+              './resources/views/*.blade.php',
+              './resources/views/*/*.blade.php',
+              './resources/views/*/*/*.blade.php',
+            ],
+            defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
+        })
+      ] : [],
+      require('cssnano')
+    ]);
+
+if (mix.inProduction()) {
+  mix.version();
+}
