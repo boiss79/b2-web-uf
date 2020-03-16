@@ -2,3 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Header */
+.menu-left li:nth-child(n-2) {
+    @apply mr-5;
+}
+
+/* Header */
+.menu-right li:nth-child(n+2) {
+    @apply ml-5;
+}
