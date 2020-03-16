@@ -10,6 +10,7 @@
         <title>Ma fiche de révision - @yield('title')</title>
     </head>
     <body>
+        @include('layouts.header')
         @yield('content')
 
         <script src="{{ mix('js/app.js') }}"></script>
