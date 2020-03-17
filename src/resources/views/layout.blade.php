@@ -9,9 +9,9 @@
         <title>Ma fiche de révision - @yield('title')</title>
     </head>
     <body>
-        @include('layouts.header')
+        @include('includes.header')
         @yield('content')
-        @include('layouts.footer')
+        @include('includes.footer')
 
         <script src="{{ mix('js/app.js') }}"></script>
         @yield('javascripts')

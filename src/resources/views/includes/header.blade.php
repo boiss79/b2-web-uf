@@ -1,4 +1,4 @@
-<header class="py-5 border-b shadow-sm fixed w-full">
+<header class="py-5 border-b shadow-sm w-full">
     <div class="container">
         <div class="flex justify-between items-center">
             <h1 class="font-medium text-2xl">Ma Fiche de Révision</h1>
