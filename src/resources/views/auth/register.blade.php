@@ -6,6 +6,15 @@
         <h2 class="font-semibold text-4xl text-center mb-20">Inscription</h2>
         
         <form method="POST" action="{{ route('register') }}" class="grid grid-cols-2 gap-10">
+            @csrf
+            @method('POST')
+
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <p class="col-span-2 text-red-500">{{ $error }}</p>
+                @endforeach
+            @endif
+
             <div>
                 <label for="first-name" class="font-medium">Prénom</label>
                 <input type="text" name="first_name" id="first-name" class="mt-2 p-3 block w-full border shadow rounded" placeholder="Votre prénom" required />

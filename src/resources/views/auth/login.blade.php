@@ -8,6 +8,13 @@
                 
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
+                    @method('POST')
+
+                    @if ($errors->any())
+                        @foreach ($errors->all() as $error)
+                            <p class="text-red-500 mb-5">{{ $error }}</p>
+                        @endforeach
+                    @endif
                     
                     <div class="mb-5">
                         <label for="email" class="font-medium">Email</label>
