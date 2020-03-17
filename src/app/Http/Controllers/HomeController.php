@@ -6,13 +6,13 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    
     /**
-     * Return the home Page
+     * Show the application dashboard.
      *
-     * @return void
+     * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(){
+    public function index()
+    {
         return view('home');
     }
 }

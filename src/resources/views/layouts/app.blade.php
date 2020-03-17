@@ -8,10 +8,11 @@
         @yield('stylesheets')
         <title>Ma fiche de révision - @yield('title')</title>
     </head>
+    
     <body>
-        @include('includes.header')
+        @include('layouts.header')
         @yield('content')
-        @include('includes.footer')
+        @include('layouts.footer')
 
         <script src="{{ mix('js/app.js') }}"></script>
         @yield('javascripts')

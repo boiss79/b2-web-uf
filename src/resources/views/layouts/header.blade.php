@@ -1,4 +1,4 @@
-<header class="py-5 border-b shadow-sm w-full">
+<header class="py-5 border-b shadow-sm">
     <div class="container">
         <div class="flex justify-between items-center">
             <h1 class="font-medium text-2xl">Ma Fiche de Révision</h1>
@@ -12,7 +12,7 @@
                         <a href="#">Nos fiches</a>
                     </li>
                     <li>
-                        <a href="#">Connexion</a>
+                        <a href="{{ route('login') }}">Connexion</a>
                     </li>
                     <li>
                         <a href="#">Inscription</a>
