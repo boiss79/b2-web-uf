@@ -6,7 +6,9 @@
             <div class="bg-white p-10 rounded shadow-md max-w-lg">
                 <h2 class="font-semibold text-4xl text-center mb-5">Connexion</h2>
                 
-                <form method="POST" action="{{ route('login') }}" class="">
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
+                    
                     <div class="mb-5">
                         <label for="email" class="font-medium">Email</label>
                         <input type="email" name="email" id="email" class="mt-2 p-3 block w-full border shadow rounded" placeholder="Adesse email" required />
@@ -22,7 +24,7 @@
                         <label for="remember">Se souvenir de moi</label>
                     </div>
 
-                    <button type="submit" class="mb-5 w-full bg-black rounded shadow text-white text-2xl py-2">
+                    <button type="submit" class="mb-5 w-full bg-black rounded shadow text-white text-2xl py-2 hover:bg-gray-900">
                         Se connecter
                     </button>
         
