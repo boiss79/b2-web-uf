@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductPurchasedsTable extends Migration
+class CreateProductsPurchasedTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,17 @@ class CreateProductPurchasedsTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_purchaseds', function (Blueprint $table) {
+        Schema::create('products_purchased', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->float('price');
             $table->bigInteger('token_purchase');
+            $table->unsignedBigInteger('buyer_id');
+            $table->unsignedBigInteger('owner_id');
             $table->timestamps();
+
+            $table->foreign('owner_id')->references('id')->on('users');
+            $table->foreign('buyer_id')->references('id')->on('users');
         });
     }
 

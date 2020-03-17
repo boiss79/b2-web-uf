@@ -13,20 +13,34 @@ class Product extends Model
     
     /**
      * Get the user that owns the product.
-     
-    *public function user()
-    *{
-    *    return $this->belongsTo('App\User','owner_id');
-    *}
     */
+    public function owner()
+    {
+        return $this->belongsTo('App\User');
+    }
     
     /**
      * Get the user that owns the product.
-     *
-    *public function category()
-    *{
-    *    return $this->belongsTo('App\Category');
-    *}
     */
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
+    }
+    
+    /**
+     * Get the comments associated at this product.
+    */
+    public function productComments()
+    {
+        return $this->hasMany('App\ProductComment','product_id');
+    }
+    
+    /**
+     * Get the ratings associated at this product.
+    */
+    public function productRatings()
+    {
+        return $this->hasMany('App\ProductRating','product_id');
+    }
 
 }

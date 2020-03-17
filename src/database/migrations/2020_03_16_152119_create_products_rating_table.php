@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductRatingsTable extends Migration
+class CreateProductsRatingTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,15 @@ class CreateProductRatingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_ratings', function (Blueprint $table) {
+        Schema::create('products_rating', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('rating');
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
+
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

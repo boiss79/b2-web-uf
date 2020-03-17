@@ -36,4 +36,34 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get products associated with the user.
+     */
+    public function products(){
+        return $this->hasMany('App\Product','owner_id');
+    }
+
+    /**
+     * Get products associated with the user.
+     */
+    public function productsPurchaseds(){
+        return $this->hasMany('App\Product','owner_id');
+    }
+
+    /**
+     * Get the comments associated at this user.
+    */
+    public function userComments()
+    {
+        return $this->hasMany('App\ProductComment','user_id');
+    }
+
+    /**
+     * Get the ratings associated at this user.
+    */
+    public function userRatings()
+    {
+        return $this->hasMany('App\ProductRating','user_id');
+    }
 }
