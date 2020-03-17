@@ -1,4 +1,4 @@
-<header class="py-5 border-b shadow-sm">
+<header class="bg-white py-5 border-b shadow-sm">
     <div class="container">
         <div class="flex justify-between items-center">
             <h1 class="font-medium text-2xl">

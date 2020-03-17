@@ -15,6 +15,7 @@
 html, body {
     font-family: 'Airbnb Cereal App', Arial, sans-serif;
     color: #262626;
+    @apply bg-gray-100;
 }
 
 /* Header */
