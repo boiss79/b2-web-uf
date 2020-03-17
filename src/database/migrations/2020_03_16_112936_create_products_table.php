@@ -17,14 +17,14 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->text('description');
-            $table->float('price');
+            $table->string('price');
             $table->string('url_sheet');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('owner_id');
             $table->timestamps();
 
 
-            $table->foreign('category_id')->references('id')->on('products_categories');
+            $table->foreign('category_id')->references('id')->on('product_categories');
             $table->foreign('owner_id')->references('id')->on('users');
         });
     }

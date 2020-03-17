@@ -49661,8 +49661,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/thomaslenaour/workspace/ynov/b2/b2-web-uf/src/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/thomaslenaour/workspace/ynov/b2/b2-web-uf/src/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /Users/alexboisseau/workspace/YNOV/b2-web-uf/src/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/alexboisseau/workspace/YNOV/b2-web-uf/src/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })
