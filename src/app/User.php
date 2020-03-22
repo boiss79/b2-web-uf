@@ -43,7 +43,7 @@ class User extends Authenticatable
      * Get products associated with the user.
      */
     public function products(){
-        return $this->hasMany('App\Product','owner_id');
+        return $this->hasMany('App\Product', 'owner_id');
     }
 
     /**

@@ -22,9 +22,9 @@ class Product extends Model
     /**
      * Get the user that owns the product.
     */
-    public function category()
+    public function categories()
     {
-        return $this->belongsTo('App\Category');
+        return $this->belongsTo('App\ProductCategory', 'category_id');
     }
     
     /**
@@ -32,7 +32,7 @@ class Product extends Model
     */
     public function productComments()
     {
-        return $this->hasMany('App\ProductComment','product_id');
+        return $this->hasMany('App\ProductComment', 'product_id');
     }
     
     /**

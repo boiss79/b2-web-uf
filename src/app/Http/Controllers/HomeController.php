@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,6 +14,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        // dd(Product::orderBy('created_at', 'desc')->take(3)->get());
+        return view('home', [
+            'products' => Product::orderBy('created_at', 'desc')->take(3)->get()
+        ]);
     }
 }

@@ -19,35 +19,19 @@
         <h2 class="text-center text-5xl font-semibold">Nos 3 dernières fiches</h2>
 
         <div class="my-20 grid grid-cols-3 gap-10">
-            <div class="bg-white rounded shadow-lg border p-10 flex flex-col items-center">
-                <p class="bg-blue-600 px-2 py-1 text-white rounded-lg mb-5">Informatique</p>
-                <h3 class="text-2xl font-medium mb-5">Mémento HTML & CSS</h3>
-                <p class="text-yellow-500 text-3xl mb-5">&#x2605; &#x2605; &#x2605; &#x2605; &#x2606;</p>
-                <div class="flex justify-center items-center">
-                    <img src="{{ asset('images/avatar.svg') }}" alt="Image avatar par défaut" class="w-10 h-10 mr-3" />
-                    <p class="ml-3">par <strong>Alex Boisseau</strong></p>
+            @forelse ($products as $product)
+                <div class="bg-white rounded shadow-lg border p-10 flex flex-col items-center">
+                    <p class="bg-blue-600 px-2 py-1 text-white rounded-lg mb-5">{{ $product->categories->name }}</p>
+                    <h3 class="text-2xl font-medium mb-5">{{ $product->name }}</h3>
+                    <p class="text-yellow-500 text-3xl mb-5">&#x2605; &#x2605; &#x2605; &#x2605; &#x2606;</p>
+                    <div class="flex justify-center items-center">
+                        <img src="{{ asset('images/avatar.svg') }}" alt="Image avatar par défaut" class="w-10 h-10 mr-3" />
+                        <p class="ml-3">par <strong>{{ $product->owner->first_name }} {{ $product->owner->last_name }}</strong></p>
+                    </div>
                 </div>
-            </div>
-
-            <div class="bg-white rounded shadow-lg border p-10 flex flex-col items-center">
-                <p class="bg-red-600 px-2 py-1 text-white rounded-lg mb-5">Mathématiques</p>
-                <h3 class="text-2xl font-medium mb-5">Le Théorème de Pythagore</h3>
-                <p class="text-yellow-500 text-3xl mb-5">&#x2605; &#x2605; &#x2605; &#x2605; &#x2606;</p>
-                <div class="flex justify-center items-center">
-                    <img src="{{ asset('images/avatar.svg') }}" alt="Image avatar par défaut" class="w-10 h-10 mr-3" />
-                    <p class="ml-3">par <strong>Thomas Le Naour</strong></p>
-                </div>
-            </div>
-
-            <div class="bg-white rounded shadow-lg border p-10 flex flex-col items-center">
-                <p class="bg-purple-600 px-2 py-1 text-white rounded-lg mb-5">Physique-Chimie</p>
-                <h3 class="text-2xl font-medium mb-5">La mécanique céleste</h3>
-                <p class="text-yellow-500 text-3xl mb-5">&#x2605; &#x2605; &#x2605; &#x2605; &#x2605;</p>
-                <div class="flex justify-center items-center">
-                    <img src="{{ asset('images/avatar.svg') }}" alt="Image avatar par défaut" class="w-10 h-10 mr-3" />
-                    <p class="ml-3">par <strong>Antoine Delchienne</strong></p>
-                </div>
-            </div>
+            @empty
+                <p class="text-center">Il n'y a pas de produit.</p>
+            @endforelse
         </div>
     </div>
 @endsection
