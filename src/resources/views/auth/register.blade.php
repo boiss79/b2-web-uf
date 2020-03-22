@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container my-20">
-        <h2 class="font-semibold text-4xl text-center mb-20">Inscription</h2>
+        <h2 class="text-center text-5xl font-semibold mb-10">Inscription</h2>
         
         <form method="POST" action="{{ route('register') }}" class="grid grid-cols-2 gap-10">
             @csrf

@@ -9,7 +9,7 @@
                 <nav>
                     <ul class="flex items-center">
                         <li>
-                            <a href="#">Fonctionnement</a>
+                            <a href="{{ route('fonctionnement') }}">Fonctionnement</a>
                         </li>
                         <li>
                             <a href="#">Nos fiches</a>
