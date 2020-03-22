@@ -17,4 +17,12 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::view('/fonctionnement', 'fonctionnement')->name('fonctionnement');
+
+// Products
+Route::get('/products', 'ProductController@index')->name('products.home');
+Route::middleware('auth')->group(function () {
+    Route::get('/products/create', 'ProductController@create')->name('products.create');
+});
+
+// For testing roles
 Route::get('/test', 'HomeController@index')->name('test');

@@ -9,10 +9,10 @@
                 <nav>
                     <ul class="flex items-center">
                         <li>
-                            <a href="{{ route('fonctionnement') }}">Fonctionnement</a>
+                            <a href="{{ route('fonctionnement') }}" class="{{ (request()->is('products/create')) ? 'font-medium' : '' }}">Fonctionnement</a>
                         </li>
                         <li>
-                            <a href="#">Nos fiches</a>
+                            <a href="{{ route('products.home') }}" class="{{ (request()->is('products')) ? 'font-medium' : '' }}">Nos fiches</a>
                         </li>
                         <li>
                             <a href="{{ route('login') }}" class="{{ (request()->is('login')) ? 'font-medium' : '' }}">Connexion</a>
@@ -28,10 +28,10 @@
                 <nav>
                     <ul class="flex items-center">
                         <li>
-                            <a href="#">Fonctionnement</a>
+                            <a href="{{ route('products.create') }}" class="{{ (request()->is('products/create')) ? 'font-medium' : '' }}">Créer une fiche</a>
                         </li>
                         <li>
-                            <a href="#">Nos fiches</a>
+                            <a href="{{ route('products.home') }}" class="{{ (request()->is('products')) ? 'font-medium' : '' }}">Nos fiches</a>
                         </li>
                         <li>
                             <a href="{{ route('logout') }}" onclick="event.preventDefault();
