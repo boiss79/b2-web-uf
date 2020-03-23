@@ -19,7 +19,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::view('/fonctionnement', 'fonctionnement')->name('fonctionnement');
 
 // Products
-Route::get('/products', 'ProductController@index')->name('products.home');
+Route::get('/products', 'ProductController@index')->name('products.index');
 Route::middleware('auth')->group(function () {
     Route::get('/products/create', 'ProductController@create')->name('products.create');
     Route::post('/products', 'ProductController@store')->name('products.store');

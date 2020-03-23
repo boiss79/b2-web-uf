@@ -12,7 +12,7 @@
                             <a href="{{ route('fonctionnement') }}" class="{{ (request()->is('products/create')) ? 'font-medium' : '' }}">Fonctionnement</a>
                         </li>
                         <li>
-                            <a href="{{ route('products.home') }}" class="{{ (request()->is('products')) ? 'font-medium' : '' }}">Nos fiches</a>
+                            <a href="{{ route('products.index') }}" class="{{ (request()->is('products')) ? 'font-medium' : '' }}">Nos fiches</a>
                         </li>
                         <li>
                             <a href="{{ route('login') }}" class="{{ (request()->is('login')) ? 'font-medium' : '' }}">Connexion</a>
@@ -31,7 +31,7 @@
                             <a href="{{ route('products.create') }}" class="{{ (request()->is('products/create')) ? 'font-medium' : '' }}">Créer une fiche</a>
                         </li>
                         <li>
-                            <a href="{{ route('products.home') }}" class="{{ (request()->is('products')) ? 'font-medium' : '' }}">Nos fiches</a>
+                            <a href="{{ route('products.index') }}" class="{{ (request()->is('products')) ? 'font-medium' : '' }}">Nos fiches</a>
                         </li>
                         <li>
                             <a href="{{ route('logout') }}" onclick="event.preventDefault();
