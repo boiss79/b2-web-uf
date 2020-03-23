@@ -22,6 +22,7 @@ Route::view('/fonctionnement', 'fonctionnement')->name('fonctionnement');
 Route::get('/products', 'ProductController@index')->name('products.home');
 Route::middleware('auth')->group(function () {
     Route::get('/products/create', 'ProductController@create')->name('products.create');
+    Route::post('/products', 'ProductController@store')->name('products.store');
 });
 
 // For testing roles

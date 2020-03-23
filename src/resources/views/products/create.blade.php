@@ -5,8 +5,14 @@
     <div class="container my-20">
         <h2 class="text-center text-5xl font-semibold mb-10">Créer une fiche</h2>
 
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <p class="mb-5 text-red-500">{{ $error }}</p>
+            @endforeach
+        @endif
+
         <div class="grid grid-cols-2 gap-10">
-            <form action="{{ route('products.home') }}" method="POST">
+            <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
     
@@ -17,7 +23,7 @@
 
                 <div class="mb-5">
                     <label for="category" class="font-medium">Catégorie</label>
-                    <select name="category" id="category" class="bg-white mt-2 p-3 block w-full border shadow rounded @error('category') border-red-500 @enderror">
+                    <select name="category_id" id="category" class="bg-white mt-2 p-3 block w-full border shadow rounded @error('category') border-red-500 @enderror">
                         <option value="">Veuillez choisir une catégorie</option>
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -31,8 +37,8 @@
                 </div>
 
                 <div class="mb-5">
-                    <label for="sheet" class="font-medium">Fiche (.pdf uniquement)</label>
-                    <input type="file" name="sheet" id="sheet" placeholder="Votre fiche" class="bg-white mt-2 p-3 block w-full border shadow rounded" required />
+                    <label for="file" class="font-medium">Fiche (.pdf uniquement)</label>
+                    <input type="file" name="url_sheet" id="file" placeholder="Votre fiche" class="bg-white mt-2 p-3 block w-full border shadow rounded" required />
                 </div>
 
                 <div class="mb-5">

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\ProductCategory;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreProduct;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -36,9 +38,17 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProduct $request)
     {
-        //
+        $validated = $request->validated();
+        $data = array_merge($validated, [
+            'owner_id' => Auth::id(),
+            'url_sheet' => $request->file('url_sheet')->store('/public/products')
+        ]);
+
+        Product::create($data);
+
+        return redirect(route('products.home'));
     }
 
     /**

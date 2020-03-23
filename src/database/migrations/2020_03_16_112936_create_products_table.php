@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->string('url_sheet');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('owner_id');
+            $table->dateTime('published_at')->nullable();
             $table->timestamps();
 
 
