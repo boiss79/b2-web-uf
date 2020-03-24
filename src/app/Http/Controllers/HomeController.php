@@ -14,7 +14,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // dd(Product::orderBy('created_at', 'desc')->take(3)->get());
         return view('home', [
             'products' => Product::orderBy('created_at', 'desc')->take(3)->get()
         ]);

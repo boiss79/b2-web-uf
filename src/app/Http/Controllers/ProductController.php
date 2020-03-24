@@ -6,7 +6,9 @@ use App\Product;
 use App\ProductCategory;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProduct;
+use App\Http\Requests\UpdateProduct;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -71,7 +73,12 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $this->authorize($product);
+        
+        return view('products.edit', [
+            'product' => $product,
+            'categories' => ProductCategory::all()
+        ]);
     }
 
     /**
@@ -81,9 +88,23 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(UpdateProduct $request, Product $product)
     {
-        //
+        $this->authorize($product);
+
+        $validated = $request->validated();
+        if (is_null($request->file('url_sheet'))) {
+            $product->update($validated);
+        }
+        else {
+            Storage::delete($product->url_sheet);
+            $data = array_merge($validated, [
+                'url_sheet' => $request->file('url_sheet')->store('/public/products')
+            ]);
+            $product->update($data);
+        }
+
+        return redirect(route('products.index'));
     }
 
     /**
@@ -94,6 +115,11 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $this->authorize($product);
+
+        Storage::delete($product->url_sheet);
+        $product->delete();
+
+        return redirect(route('products.index'));
     }
 }
