@@ -25,5 +25,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/products', 'ProductController@store')->name('products.store');
 });
 
+Route::get('/products/category/{category}', 'ProductController@indexByCategory')->name('products.category.index');
+Route::get('/products/{product}', 'ProductController@show')->name('products.show');
+
 // For testing roles
 Route::get('/test', 'HomeController@index')->name('test');

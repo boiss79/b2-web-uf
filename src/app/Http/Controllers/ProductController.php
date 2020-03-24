@@ -17,8 +17,20 @@ class ProductController extends Controller
      */
     public function index()
     {
-        
-        return view('products.index');
+        $categories = ProductCategory::all();
+
+        return view('products.index', [
+            'categories' => $categories
+        ]);
+    }
+
+    public function indexByCategory(ProductCategory $category){
+        $products = $category->products;
+ 
+        return view('products.category.index', [
+            'products' => $products,
+            'category' => $category
+        ]);
     }
 
     /**
@@ -60,7 +72,9 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('products.show', [
+            'product' => $product
+        ]);
     }
 
     /**
