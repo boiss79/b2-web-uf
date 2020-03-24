@@ -9,7 +9,7 @@
                 <nav>
                     <ul class="flex items-center">
                         <li>
-                            <a href="{{ route('fonctionnement') }}" class="{{ (request()->is('products/create')) ? 'font-medium' : '' }}">Fonctionnement</a>
+                            <a href="{{ route('fonctionnement') }}" class="{{ (request()->is('fonctionnement')) ? 'font-medium' : '' }}">Fonctionnement</a>
                         </li>
                         <li>
                             <a href="{{ route('products.index') }}" class="{{ (request()->is('products')) ? 'font-medium' : '' }}">Nos fiches</a>
