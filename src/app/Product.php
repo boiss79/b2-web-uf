@@ -20,7 +20,7 @@ class Product extends Model
     }
     
     /**
-     * Get the user that owns the product.
+     * Get the category that owns the product.
     */
     public function categories()
     {
