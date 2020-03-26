@@ -43,6 +43,10 @@
                                 @method('POST')
                             </form>
                         </li>
+                        <li class="flex items-center">
+                            <img src="{{ asset('images/avatar.svg') }}" alt="Image avatar par défaut" class="w-6 h-6 mr-3" />
+                            <a href="{{ route('profile.show', Auth::user()) }}" class="{{ (request()->is('profile/' . Auth::user()->id)) ? 'font-medium' : '' }}">{{ Auth::user()->full_name }}</a>
+                        </li>
                     </ul>
                 </nav>
             @endauth
