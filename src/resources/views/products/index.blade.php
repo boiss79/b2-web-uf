@@ -17,7 +17,6 @@
                     <p class="text-center">Il n'y a pas de produit.</p>
                 @endforelse
             </div>
-
         @empty
             
         @endforelse
