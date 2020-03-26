@@ -3,7 +3,9 @@
 
 @section('content')
     <div class="container my-20">
-        <a href="{{ route('profile.edit', $user) }}" class="inline-block mb-10 bg-black rounded shadow text-white py-2 px-3 hover:bg-gray-900">Modifier mon profil</a>
+        @if (Auth::id() === $user->id)
+            <a href="{{ route('users.profile.edit', $user) }}" class="inline-block mb-10 bg-black rounded shadow text-white py-2 px-3 hover:bg-gray-900">Modifier mon profil</a>
+        @endif
 
         <div class="flex items-center mb-10">
             <img src="{{ asset('images/avatar.svg') }}" alt="Image avatar par défaut" class="w-20 h-20 mr-5" />

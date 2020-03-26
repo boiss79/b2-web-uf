@@ -5,7 +5,7 @@
     <div class="container my-20">
         <h2 class="text-center text-5xl font-semibold mb-10">Modifier votre profil</h2>
         
-        <form method="POST" action="{{ route('profile.update', $user) }}" class="grid grid-cols-2 gap-10">
+        <form method="POST" action="{{ route('users.profile.update', $user) }}" class="grid grid-cols-2 gap-10">
             @csrf
             @method('PUT')
 
@@ -30,7 +30,7 @@
                 <textarea name="description" id="last-name" class="mt-2 p-3 block w-full border shadow rounded" rows="5" placeholder="Présentez-vous à la communauté ;)">{{ $user->description }}</textarea>
             </div>
 
-            <button type="submit" class="col-span-2 mb-5 w-full bg-black rounded shadow text-white text-2xl py-2 hover:bg-gray-900">
+            <button type="submit" class="col-span-2 w-full bg-black rounded shadow text-white text-2xl py-2 hover:bg-gray-900">
                 Enregistrer les modifications
             </button>
         </form>

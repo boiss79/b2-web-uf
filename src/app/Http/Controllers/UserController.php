@@ -6,8 +6,10 @@ use App\User;
 use App\Product;
 use App\Http\Requests\UpdateUser;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UpdatePassword;
 
-class ProfileController extends Controller
+class UserController extends Controller
 {
     /**
      * Display the specified resource.
@@ -15,11 +17,23 @@ class ProfileController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function showProfile(User $user)
     {
-        return view('profile.show', [
+        return view('users.profile.show', [
             'user' => $user,
             'products' => $user->products
+        ]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showParameters()
+    {
+        return view('users.parameters.show', [
+            'user' => Auth::user()
         ]);
     }
 
@@ -29,11 +43,11 @@ class ProfileController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function editProfile(User $user)
     {
-        $this->authorize($user);
+        $this->authorize('update', $user);
 
-        return view('profile.edit', [
+        return view('users.profile.edit', [
             'user' => $user
         ]);
     }
@@ -45,15 +59,26 @@ class ProfileController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUser $request, User $user)
+    public function updateProfile(UpdateUser $request, User $user)
     {
-        $this->authorize($user);
+        $this->authorize('update', $user);
         $validated = $request->validated();
         $user->update($validated);
 
-        return redirect()->action('ProfileController@show', [
+        return redirect()->action('UserController@showProfile', [
             'user' => $user
         ]);
+    }
+
+    public function updatePassword(UpdatePassword $request) {
+        $user = Auth::user();
+        $this->authorize('update', $user);
+        $validated = $request->validated();
+        $user->update([
+            'password' => Hash::make($validated['new_password'])
+        ]);
+        
+        return back()->with('success', 'ok');
     }
 
     /**

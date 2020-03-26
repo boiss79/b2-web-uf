@@ -34,18 +34,27 @@
                             <a href="{{ route('products.index') }}" class="{{ (request()->is('products')) ? 'font-medium' : '' }}">Nos fiches</a>
                         </li>
                         <li>
-                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                                Déconnexion
+                            <a href="#" class="flex items-center">
+                                <img src="{{ asset('images/icons/basket.png') }}" alt="Icone panier" class="w-6 h-6 mr-2" /> 0
                             </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                @csrf
-                                @method('POST')
-                            </form>
                         </li>
-                        <li class="flex items-center">
-                            <img src="{{ asset('images/avatar.svg') }}" alt="Image avatar par défaut" class="w-6 h-6 mr-3" />
-                            <a href="{{ route('profile.show', Auth::user()) }}" class="{{ (request()->is('profile/' . Auth::user()->id)) ? 'font-medium' : '' }}">{{ Auth::user()->full_name }}</a>
+                        <li>
+                            <button class="flex items-center focus:outline-none" id="dropdown-button">
+                                <img src="{{ asset('images/avatar.svg') }}" alt="Image avatar par défaut" class="w-6 h-6 mr-3" />
+                                {{ Auth::user()->full_name }}
+                            </button>
+                            <div id="dropdown-menu" class="absolute hidden mt-6 bg-white rounded-b-md shadow-lg border-t border-white" style="width: 163px;">
+                                <a href="{{ route('users.profile.show', Auth::user()) }}" class="block p-3 hover:bg-gray-200">Mon profil</a>
+                                <a href="{{ route('users.profile.show', Auth::user()) }}" class="block p-3 hover:bg-gray-200">Mes achats</a>
+                                <a href="{{ route('users.parameters.show') }}" class="block p-3 hover:bg-gray-200">Paramètres</a>
+                                <a href="{{ route('logout') }}" class="block p-3 hover:bg-gray-200" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Déconnexion
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    @method('POST')
+                                </form>
+                            </div>
                         </li>
                     </ul>
                 </nav>

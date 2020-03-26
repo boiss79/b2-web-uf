@@ -31,11 +31,18 @@ Route::get('/products/category/{category}', 'ProductController@indexByCategory')
 Route::get('/products/{product}', 'ProductController@show')->name('products.show');
 
 // Users
-Route::get('/profile/{user}', 'ProfileController@show')->name('profile.show');
+Route::get('/profile/{user}', 'UserController@showProfile')->name('users.profile.show');
 Route::middleware('auth')->group(function () {
-    Route::get('/profile/{user}/edit', 'ProfileController@edit')->name('profile.edit');
-    Route::put('/profile/{user}', 'ProfileController@update')->name('profile.update');
+    // Profile
+    Route::get('/profile/{user}/edit', 'UserController@editProfile')->name('users.profile.edit');
+    Route::put('/profile/{user}', 'UserController@updateProfile')->name('users.profile.update');
+
+    // Parameters
+    Route::get('/parameters', 'UserController@showParameters')->name('users.parameters.show');
+    Route::post('/parameters/change-password', 'UserController@updatePassword')->name('users.parameters.updatePassword');
 });
+
+
 // Admin
 Route::get('/admin', 'Admin\HomeController@index')->name('admin.home');
 
