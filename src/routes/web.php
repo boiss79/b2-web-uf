@@ -36,6 +36,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/{user}/edit', 'ProfileController@edit')->name('profile.edit');
     Route::put('/profile/{user}', 'ProfileController@update')->name('profile.update');
 });
+// Admin
+Route::get('/admin', 'Admin\HomeController@index')->name('admin.home');
 
 // For testing roles
 Route::get('/test', 'HomeController@index')->name('test');
