@@ -27,11 +27,15 @@ Route::middleware('auth')->group(function () {
     Route::put('/products/{product}', 'ProductController@update')->name('products.update');
     Route::delete('/products/{product}', 'ProductController@destroy')->name('products.destroy');
 });
-
-// Users profiles
-Route::get('/profile/{user}', 'ProfileController@show')->name('profile.show');
 Route::get('/products/category/{category}', 'ProductController@indexByCategory')->name('products.category.index');
 Route::get('/products/{product}', 'ProductController@show')->name('products.show');
+
+// Users
+Route::get('/profile/{user}', 'ProfileController@show')->name('profile.show');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile/{user}/edit', 'ProfileController@edit')->name('profile.edit');
+    Route::put('/profile/{user}', 'ProfileController@update')->name('profile.update');
+});
 
 // For testing roles
 Route::get('/test', 'HomeController@index')->name('test');

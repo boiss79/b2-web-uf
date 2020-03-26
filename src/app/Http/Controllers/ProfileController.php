@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Product;
-use Illuminate\Http\Request;
+use App\Http\Requests\UpdateUser;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -17,7 +18,7 @@ class ProfileController extends Controller
     public function show(User $user)
     {
         return view('profile.show', [
-            'profile' => $user,
+            'user' => $user,
             'products' => $user->products
         ]);
     }
@@ -30,7 +31,11 @@ class ProfileController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        $this->authorize($user);
+
+        return view('profile.edit', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -40,9 +45,15 @@ class ProfileController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUser $request, User $user)
     {
-        //
+        $this->authorize($user);
+        $validated = $request->validated();
+        $user->update($validated);
+
+        return redirect()->action('ProfileController@show', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -53,6 +64,8 @@ class ProfileController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $this->authorize($user);
+
+
     }
 }
