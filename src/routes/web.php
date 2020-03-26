@@ -33,5 +33,8 @@ Route::get('/profile/{user}', 'ProfileController@show')->name('profile.show');
 Route::get('/products/category/{category}', 'ProductController@indexByCategory')->name('products.category.index');
 Route::get('/products/{product}', 'ProductController@show')->name('products.show');
 
+// Admin
+Route::get('/admin', 'Admin\HomeController@index')->name('admin.home');
+
 // For testing roles
 Route::get('/test', 'HomeController@index')->name('test');
