@@ -14,8 +14,8 @@
                     @csrf
                     @method('POST')
 
-                    @if ($errors->any())
-                        @foreach ($errors->all() as $error)
+                    @if ($errors->updatePassword->any())
+                        @foreach ($errors->updatePassword->all() as $error)
                             <p class="text-red-500 mb-5">{{ $error }}</p>
                         @endforeach
                     @endif
@@ -41,15 +41,25 @@
                     </button>
                 </form>
             </div>
+ 
             <div>
                 <h3 class="text-3xl">Gestion de l'adresse email</h3>
                 <p>Si vous désirez changer l'adresse email associé à votre compte, modifiez là ci-dessous.</p>
-                <form action="" method="POST" class="mt-5 shadow-md border rounded-lg p-5 bg-white">
-                        <label for="first-name" class="font-medium">Adresse email</label>
-                        <input type="text" name="first_name" id="first-name" class="mt-2 p-3 block w-full border shadow rounded" placeholder="Votre adresse email" value="{{ $user->email }}" required />
-                        <button type="submit" class="mt-5 w-full bg-black rounded shadow text-white text-lg py-2 hover:bg-gray-900">
-                            Modifier l'adresse email
-                        </button>
+                <form action="{{ route('users.parameters.updateEmail', $user) }}" method="POST" class="mt-5 shadow-md border rounded-lg p-5 bg-white" id="form-change-email">
+                    @csrf
+                    @method('PUT')
+
+                    @if ($errors->updateEmail->any())
+                        @foreach ($errors->updateEmail->all() as $error)
+                            <p class="text-red-500 mb-5">{{ $error }}</p>
+                        @endforeach
+                    @endif
+                    
+                    <label for="email" class="font-medium">Adresse email</label>
+                    <input type="email" name="email" id="email" class="mt-2 p-3 block w-full border shadow rounded" placeholder="Votre adresse email" value="{{ $user->email }}" required />
+                    <button type="submit" form="form-change-email" class="mt-5 w-full bg-black rounded shadow text-white text-lg py-2 hover:bg-gray-900">
+                        Modifier l'adresse email
+                    </button>
                 </form>
                 
                 <h3 class="text-3xl mt-5">Gestion de la newsletter</h3>

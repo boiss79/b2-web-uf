@@ -2,12 +2,11 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\MatchOldPassword;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdatePassword extends FormRequest
+class UpdateEmail extends FormRequest
 {
-    protected $errorBag = 'updatePassword';
+    protected $errorBag = 'updateEmail';
 
     /**
      * Determine if the user is authorized to make this request.
@@ -27,8 +26,7 @@ class UpdatePassword extends FormRequest
     public function rules()
     {
         return [
-            'current_password' => ['required', new MatchOldPassword],
-            'new_password' => 'required|confirmed|min:8',
+            'email' => 'required|email'
         ];
     }
 }

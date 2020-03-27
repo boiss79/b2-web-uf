@@ -39,7 +39,8 @@ Route::middleware('auth')->group(function () {
 
     // Parameters
     Route::get('/parameters', 'UserController@showParameters')->name('users.parameters.show');
-    Route::post('/parameters/change-password', 'UserController@updatePassword')->name('users.parameters.updatePassword');
+    Route::post('/parameters', 'UserController@updatePassword')->name('users.parameters.updatePassword');
+    Route::put('/parameters', 'UserController@updateEmail')->name('users.parameters.updateEmail');
 });
 
 

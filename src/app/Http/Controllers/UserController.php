@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Product;
 use App\Http\Requests\UpdateUser;
+use App\Http\Requests\UpdateEmail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UpdatePassword;
@@ -75,8 +76,17 @@ class UserController extends Controller
         $this->authorize('update', $user);
         $validated = $request->validated();
         $user->update([
-            'password' => Hash::make($validated['new_password'])
+            'email' => Hash::make($validated['new_password'])
         ]);
+        
+        return back()->with('success', 'ok');
+    }
+
+    public function updateEmail(UpdateEmail $request) {
+        $user = Auth::user();
+        $this->authorize('update', $user);
+        $validated = $request->validated();
+        $user->update($validated);
         
         return back()->with('success', 'ok');
     }
