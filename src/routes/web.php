@@ -45,7 +45,12 @@ Route::middleware('auth')->group(function () {
 
 
 // Admin
-Route::get('/admin', 'Admin\HomeController@index')->name('admin.home');
+Route::group(['middleware' => ['role:admin|moderator']], function () {
+    Route::get('/admin', 'Admin\HomeController@index')->name('admin.home');
+    Route::get('/admin/comments', 'Admin\CommentController@index')->name('admin.comments');
+    Route::get('/admin/users', 'Admin\UserController@index')->name('admin.users');
+    Route::get('/admin/products', 'Admin\ProductController@index')->name('admin.products');
+});
 
 // For testing roles
 Route::get('/test', 'HomeController@index')->name('test');
