@@ -2,10 +2,10 @@
 
 namespace App;
 
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
@@ -48,6 +48,16 @@ class User extends Authenticatable
      */
     public function products() {
         return $this->hasMany('App\Product', 'owner_id');
+    }
+
+    /**
+     * Return the number of its product
+     *
+     * @return int
+    */ 
+    public function nbProducts(){
+        $products = $this->hasMany('App\Product', 'owner_id');
+        return $products->count();
     }
 
     /**

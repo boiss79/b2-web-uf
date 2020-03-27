@@ -2,18 +2,18 @@
     <div class="container">
         <div class="flex justify-between items-center">
             <h1 class="font-medium text-2xl">
-                <a href="{{ route('home') }}">Administration</a>
+                <a href="{{ route('admin.home') }}">Administration</a>
             </h1>    
             <nav>
                 <ul class="flex items-center">
                     <li>
-                        <a href="{{ route('fonctionnement') }}" class="{{ (request()->is('fonctionnement')) ? 'font-medium' : '' }}">Utilisateurs</a>
+                        <a href="{{ route('admin.users')}}" class="{{ (request()->is('fonctionnement')) ? 'font-medium' : '' }}">Utilisateurs</a>
                     </li>
                     <li>
-                        <a href="{{ route('products.index') }}" class="{{ (request()->is('products')) ? 'font-medium' : '' }}">Produits</a>
+                    <a href="{{ route('admin.products')}}" class="{{ (request()->is('products')) ? 'font-medium' : '' }}">Produits</a>
                     </li>
                     <li>
-                        <a href="{{ route('login') }}" class="{{ (request()->is('login')) ? 'font-medium' : '' }}">Commentaires</a>
+                        <a href="{{ route('admin.comments') }}" class="{{ (request()->is('login')) ? 'font-medium' : '' }}">Commentaires</a>
                     </li>
                 </ul>
             </nav>
