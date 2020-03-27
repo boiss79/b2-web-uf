@@ -38,16 +38,15 @@
                                 <img src="{{ asset('images/icons/basket.png') }}" alt="Icone panier" class="w-6 h-6 mr-2" /> 0
                             </a>
                         </li>
-                        <li>
+                        <li class="relative">
                             <button class="flex items-center focus:outline-none" id="dropdown-button">
-                                <img src="{{ asset('images/avatar.svg') }}" alt="Image avatar par défaut" class="w-6 h-6 mr-3" />
-                                {{ Auth::user()->full_name }}
+                                <img src="{{ asset('images/avatar.svg') }}" alt="Image avatar par défaut" class="w-10 h-10" />
                             </button>
-                            <div id="dropdown-menu" class="absolute hidden mt-6 bg-white rounded-b-md shadow-lg border-t border-white" style="width: 163px;">
-                                <a href="{{ route('users.profile.show', Auth::user()) }}" class="block p-3 hover:bg-gray-200">Mon profil</a>
-                                <a href="{{ route('users.profile.show', Auth::user()) }}" class="block p-3 hover:bg-gray-200">Mes achats</a>
-                                <a href="{{ route('users.parameters.show') }}" class="block p-3 hover:bg-gray-200">Paramètres</a>
-                                <a href="{{ route('logout') }}" class="block p-3 hover:bg-gray-200" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <div id="dropdown-menu" class="absolute hidden mt-5 right-0 bg-white rounded-b-md shadow-lg border-t border-white">
+                                <a href="{{ route('users.profile.show', Auth::user()) }}" class="block py-3 px-4 hover:bg-gray-200 font-medium">{{ Auth::user()->full_name }}</a>
+                                <a href="{{ route('users.profile.show', Auth::user()) }}" class="block py-3 px-4 hover:bg-gray-200">Mes achats</a>
+                                <a href="{{ route('users.settings.show') }}" class="block py-3 px-4 hover:bg-gray-200">Paramètres</a>
+                                <a href="{{ route('logout') }}" class="block py-3 px-4 hover:bg-gray-200" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     Déconnexion
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST">

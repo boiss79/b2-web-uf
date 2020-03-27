@@ -10,7 +10,7 @@
             <div>
                 <h3 class="text-3xl">Gestion du mot de passe</h3>
                 <p>Il est recommandé de changer fréquemment votre mot de passe et de choisir un code robuste. Nous vous recommandons d'utiliser un mot de passe différent sur chaque site.</p>
-                <form action="{{ route('users.parameters.updatePassword') }}" method="POST" class="mt-5 shadow-md border rounded-lg p-5 bg-white" id="form-change-password">
+                <form action="{{ route('users.settings.updatePassword') }}" method="POST" class="mt-5 shadow-md border rounded-lg p-5 bg-white" id="form-change-password">
                     @csrf
                     @method('POST')
 
@@ -40,12 +40,21 @@
                         Modifier le mot de passe
                     </button>
                 </form>
+
+                <h3 class="text-3xl mt-5">Suppression du compte</h3>
+                <p>Si vous souhaitez supprimer votre compte, vous pouvez cliquer sur le bouton ci-dessous. Toutes les données associées à votre compte seront effacées. Cette action est irréversible.</p>
+                <form action="{{ route('users.settings.destroy', $user) }}" method="POST" id="form-delete-user" onsubmit="return confirm('Etes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.')" class="mt-5">
+                    @csrf
+                    @method('DELETE')
+
+                    <button type="submit" class="font-medium text-red-500 focus:outline-none">Supprimer mon compte</button>
+                </form>
             </div>
  
             <div>
                 <h3 class="text-3xl">Gestion de l'adresse email</h3>
                 <p>Si vous désirez changer l'adresse email associé à votre compte, modifiez là ci-dessous.</p>
-                <form action="{{ route('users.parameters.updateEmail', $user) }}" method="POST" class="mt-5 shadow-md border rounded-lg p-5 bg-white" id="form-change-email">
+                <form action="{{ route('users.settings.updateEmail', $user) }}" method="POST" class="mt-5 shadow-md border rounded-lg p-5 bg-white" id="form-change-email">
                     @csrf
                     @method('PUT')
 

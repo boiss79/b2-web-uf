@@ -5,7 +5,7 @@
     <div class="container my-20">
         <h2 class="text-center text-5xl font-semibold mb-10">Modifier votre profil</h2>
         
-        <form method="POST" action="{{ route('users.profile.update', $user) }}" class="grid grid-cols-2 gap-10">
+        <form method="POST" action="{{ route('users.profile.update') }}" class="grid grid-cols-2 gap-10">
             @csrf
             @method('PUT')
 

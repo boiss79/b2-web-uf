@@ -31,17 +31,18 @@ Route::get('/products/category/{category}', 'ProductController@indexByCategory')
 Route::get('/products/{product}', 'ProductController@show')->name('products.show');
 
 // Users
-Route::get('/profile/{user}', 'UserController@showProfile')->name('users.profile.show');
 Route::middleware('auth')->group(function () {
     // Profile
-    Route::get('/profile/{user}/edit', 'UserController@editProfile')->name('users.profile.edit');
-    Route::put('/profile/{user}', 'UserController@updateProfile')->name('users.profile.update');
-
+    Route::get('/profile/edit', 'UserController@editProfile')->name('users.profile.edit');
+    Route::put('/profile/edit', 'UserController@updateProfile')->name('users.profile.update');
+    
     // Parameters
-    Route::get('/parameters', 'UserController@showParameters')->name('users.parameters.show');
-    Route::post('/parameters', 'UserController@updatePassword')->name('users.parameters.updatePassword');
-    Route::put('/parameters', 'UserController@updateEmail')->name('users.parameters.updateEmail');
+    Route::get('/settings', 'UserController@showSettings')->name('users.settings.show');
+    Route::post('/settings', 'UserController@updatePassword')->name('users.settings.updatePassword');
+    Route::put('/settings', 'UserController@updateEmail')->name('users.settings.updateEmail');
+    Route::delete('/settings', 'UserController@destroy')->name('users.settings.destroy');
 });
+Route::get('/profile/{user}', 'UserController@showProfile')->name('users.profile.show');
 
 
 // Admin

@@ -63,7 +63,7 @@ class ProductController extends Controller
 
         Product::create($data);
 
-        return redirect(route('products.index'));
+        return redirect()->route('products.index');
     }
 
     /**
@@ -87,7 +87,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $this->authorize($product);
+        $this->authorize('update', $product);
         
         return view('products.edit', [
             'product' => $product,
@@ -118,7 +118,7 @@ class ProductController extends Controller
             $product->update($data);
         }
 
-        return redirect(route('products.index'));
+        return redirect()->route('products.index');
     }
 
     /**
@@ -129,11 +129,11 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        $this->authorize($product);
+        $this->authorize('delete', $product);
 
         Storage::delete($product->url_sheet);
         $product->delete();
 
-        return redirect(route('products.index'));
+        return redirect()->route('products.index');
     }
 }

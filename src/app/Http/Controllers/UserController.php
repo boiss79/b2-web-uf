@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\Product;
 use App\Http\Requests\UpdateUser;
 use App\Http\Requests\UpdateEmail;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +12,7 @@ use App\Http\Requests\UpdatePassword;
 class UserController extends Controller
 {
     /**
-     * Display the specified resource.
+     * Display the user profile acording to ID.
      *
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
@@ -27,68 +26,74 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show the form for editing the user profile.
      *
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function showParameters()
+    public function editProfile()
     {
-        return view('users.parameters.show', [
+        return view('users.profile.edit', [
             'user' => Auth::user()
         ]);
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function editProfile(User $user)
-    {
-        $this->authorize('update', $user);
-
-        return view('users.profile.edit', [
-            'user' => $user
-        ]);
-    }
-
-    /**
-     * Update the specified resource in storage.
+     * Update the user profile
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function updateProfile(UpdateUser $request, User $user)
+    public function updateProfile(UpdateUser $request)
     {
-        $this->authorize('update', $user);
-        $validated = $request->validated();
-        $user->update($validated);
+        $authenticatedUser = Auth::user();
 
-        return redirect()->action('UserController@showProfile', [
-            'user' => $user
+        // Check if user can update profile
+        $this->authorize('update', $authenticatedUser);
+
+        $validated = $request->validated();
+        $authenticatedUser->update($validated);
+
+        return redirect()->route('users.profile.show', [$authenticatedUser])->with('green', 'ok');
+    }
+
+    /**
+     * Display the user's parameters page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showSettings()
+    {
+        return view('users.settings.show', [
+            'user' => Auth::user()
         ]);
     }
 
     public function updatePassword(UpdatePassword $request) {
-        $user = Auth::user();
-        $this->authorize('update', $user);
+        $authenticatedUser = Auth::user();
+
+        // Check if user can update password
+        $this->authorize('update', $authenticatedUser);
+
         $validated = $request->validated();
-        $user->update([
-            'email' => Hash::make($validated['new_password'])
+        $authenticatedUser->update([
+            'password' => Hash::make($validated['new_password'])
         ]);
         
-        return back()->with('success', 'ok');
+        return redirect(route('users.settings.show'))->with('green', 'ok');
     }
 
     public function updateEmail(UpdateEmail $request) {
-        $user = Auth::user();
-        $this->authorize('update', $user);
+        $authenticatedUser = Auth::user();
+
+        // Check if user can update password
+        $this->authorize('update', $authenticatedUser);
+
         $validated = $request->validated();
-        $user->update($validated);
+        $authenticatedUser->update($validated);
         
-        return back()->with('success', 'ok');
+        return redirect(route('users.settings.show'))->with('green', 'ok');
     }
 
     /**
@@ -97,10 +102,14 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy()
     {
-        $this->authorize($user);
+        $authenticatedUser = Auth::user();
+        
+        // Check if user can destroy his account
+        $this->authorize('delete', $authenticatedUser);
+        $authenticatedUser->delete();
 
-
+        return redirect(route('home'))->with('green', 'ok');
     }
 }
