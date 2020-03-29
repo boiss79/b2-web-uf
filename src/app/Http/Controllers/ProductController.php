@@ -63,7 +63,7 @@ class ProductController extends Controller
 
         Product::create($data);
 
-        return redirect()->route('products.index');
+        return redirect()->route('products.index')->with('green', 'Le produit a bien été publié.');
     }
 
     /**

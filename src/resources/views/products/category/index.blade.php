@@ -2,7 +2,7 @@
 @section('title', 'Home')
 
 @section('content')
-    <div class="container my-20">
+    <div class="container my-10">
     <h2 class="text-center text-5xl font-semibold mb-10">Nos fiches de {{ $category->name }}</h2>
 
         <div class="my-20 grid grid-cols-3 gap-10">

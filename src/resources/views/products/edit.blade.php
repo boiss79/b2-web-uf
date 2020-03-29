@@ -2,7 +2,7 @@
 @section('title', 'Edit')
 
 @section('content')
-    <div class="container my-20">
+    <div class="container my-10">
         <h2 class="text-center text-5xl font-semibold mb-10">Modifier une fiche</h2>
 
         @if ($errors->any())

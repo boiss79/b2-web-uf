@@ -23,6 +23,18 @@ nav ul li:nth-child(n+2) {
     @apply ml-10;
 }
 
+/* Alert */
+@keyframes fadeInOut {
+    0%   { opacity: 0; }
+    20%  { opacity: 1; }
+    80%  { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+#alert {
+    animation: fadeInOut 6s forwards;
+}
+
 /* Login */
 .bg-login {
     background-image: url('../images/students.jpg');

@@ -55,7 +55,7 @@ class UserController extends Controller
         $validated = $request->validated();
         $authenticatedUser->update($validated);
 
-        return redirect()->route('users.profile.show', [$authenticatedUser])->with('green', 'ok');
+        return redirect()->route('users.profile.show', [$authenticatedUser])->with('green', 'Le profil a bien été modifié.');
     }
 
     /**
