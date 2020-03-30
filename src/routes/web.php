@@ -44,8 +44,10 @@ Route::middleware('auth')->group(function () {
 });
 Route::get('/profile/{user}', 'UserController@showProfile')->name('users.profile.show');
 
+// -----------------
+//      ADMIN
+// -----------------
 
-// Admin
 Route::group(['middleware' => 'role:admin|moderator'], function () {
     Route::get('/admin', 'Admin\HomeController@index')->name('admin.home');
     Route::get('/admin/comments', 'Admin\CommentController@index')->name('admin.comments');
