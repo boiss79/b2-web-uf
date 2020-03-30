@@ -19,18 +19,14 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $categories = ProductCategory::all();
-
         return view('products.index', [
-            'categories' => $categories
+            'categories' => ProductCategory::all()
         ]);
     }
 
-    public function indexByCategory(ProductCategory $category){
-        $products = $category->products;
- 
+    public function indexByCategory(ProductCategory $category) {
         return view('products.category.index', [
-            'products' => $products,
+            'products' => $category->products,
             'category' => $category
         ]);
     }
