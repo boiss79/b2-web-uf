@@ -10,7 +10,7 @@
             <nav>
                 <ul class="flex items-center">
                     <li>
-                        <a href="{{ route('admin.products.index')}}" class="{{ (request()->is('admin/products')) ? 'font-medium' : '' }}">Produits</a>
+                        <a href="{{ route('admin.products.index') }}" class="{{ (request()->is('admin/products')) ? 'font-medium' : '' }}">Produits</a>
                     </li>
                     <li>
                         <a href="{{ route('admin.users.index')}}" class="{{ (request()->is('admin/users')) ? 'font-medium' : '' }}">Utilisateurs</a>
