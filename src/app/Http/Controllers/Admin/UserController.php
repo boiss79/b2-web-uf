@@ -15,4 +15,16 @@ class UserController extends Controller
             "users" => User::all(),
         ]);
     }
+
+    /**
+     * Method to remove an user
+     *
+     * @param User $user
+     * @return void
+     */
+    public function destroy(User $user){
+        $user->delete();
+
+        return redirect()->route('admin.users');
+    }
 }

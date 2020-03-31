@@ -28,7 +28,12 @@
                     <td class="py-4 px-6 border-b border-grey-light"> {{ $user->products->count() }} </td>
                     <td class="py-4 px-6 border-b border-grey-light"> {{ $user->description }} </td>
                     <td class="py-4 px-6 border-b border-grey-light">
-                        <a href="#" class="bg-red-600 rounded p-1 text-white">Supprimer</a>
+                      <form action="{{ route('admin.users.destroy', $user) }}" method="POST" id="form-delete-user" onsubmit="return confirm('Etes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.')" class="">
+                        @csrf
+                        @method('DELETE')
+    
+                        <button type="submit" class="bg-red-600 rounded p-1 text-white">Supprimer</button>
+                      </form>
                     </td>
                 </tr>
             @empty

@@ -53,4 +53,7 @@ Route::group(['middleware' => 'role:admin|moderator'], function () {
     Route::get('/admin/comments', 'Admin\CommentController@index')->name('admin.comments.index');
     Route::get('/admin/users', 'Admin\UserController@index')->name('admin.users');
     Route::get('/admin/products', 'Admin\ProductController@index')->name('admin.products');
+    Route::group(['middleware' => 'role:admin'], function () {
+        Route::delete('/admin/users/delete/{user}', 'Admin\UserController@destroy')->name('admin.users.destroy');
+    });
 });
