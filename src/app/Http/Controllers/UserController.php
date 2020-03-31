@@ -55,7 +55,7 @@ class UserController extends Controller
         $validated = $request->validated();
         $authenticatedUser->update($validated);
 
-        return redirect()->route('users.profile.show', [$authenticatedUser])->with('green', 'Le profil a bien été modifié.');
+        return redirect()->route('users.profile.show', [$authenticatedUser])->with('green', 'Votre profil a bien été modifié.');
     }
 
     /**
@@ -81,7 +81,7 @@ class UserController extends Controller
             'password' => Hash::make($validated['new_password'])
         ]);
         
-        return redirect(route('users.settings.show'))->with('green', 'ok');
+        return redirect(route('users.settings.show'))->with('green', 'Votre mot de passe a bien été modifié.');
     }
 
     public function updateEmail(UpdateEmail $request) {
@@ -93,7 +93,7 @@ class UserController extends Controller
         $validated = $request->validated();
         $authenticatedUser->update($validated);
         
-        return redirect(route('users.settings.show'))->with('green', 'ok');
+        return redirect(route('users.settings.show'))->with('green', 'Votre adresse email a bien été modifiée.');
     }
 
     /**
@@ -110,6 +110,6 @@ class UserController extends Controller
         $this->authorize('delete', $authenticatedUser);
         $authenticatedUser->delete();
 
-        return redirect(route('home'))->with('green', 'ok');
+        return redirect(route('home'))->with('green', 'Votre compte a bien été supprimé.');
     }
 }
