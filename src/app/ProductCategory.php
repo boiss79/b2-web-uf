@@ -20,4 +20,8 @@ class ProductCategory extends Model
     public function threeProducts(){
         return $this->products()->orderBy('created_at', 'DESC')->limit(3);
     }
+
+    public function getRouteKeyName() {
+        return 'name';
+    }
 }

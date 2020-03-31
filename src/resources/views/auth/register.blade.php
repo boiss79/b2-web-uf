@@ -2,7 +2,7 @@
 @section('title', 'Inscription')
 
 @section('content')
-    <div class="container my-20">
+    <div class="container my-10">
         <h2 class="text-center text-5xl font-semibold mb-10">Inscription</h2>
         
         <form method="POST" action="{{ route('register') }}" class="grid grid-cols-2 gap-10">

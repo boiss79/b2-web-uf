@@ -61,3 +61,7 @@
         </div>
     </div>
 </header>
+
+@if ($alert = session('green'))
+    <x-alert color="green" :message="$alert" />
+@endif

@@ -44,17 +44,13 @@ Route::middleware('auth')->group(function () {
 });
 Route::get('/profile/{user}', 'UserController@showProfile')->name('users.profile.show');
 
+// -----------------
+//      ADMIN
+// -----------------
 
-// Admin
-Route::group(['middleware' => ['role:admin|moderator']], function () {
+Route::group(['middleware' => 'role:admin|moderator'], function () {
     Route::get('/admin', 'Admin\HomeController@index')->name('admin.home');
     Route::get('/admin/comments', 'Admin\CommentController@index')->name('admin.comments.index');
     Route::get('/admin/users', 'Admin\UserController@index')->name('admin.users');
     Route::get('/admin/products', 'Admin\ProductController@index')->name('admin.products');
-    Route::group(['middleware' => ['role:admin']], function (){
-        Route::delete('/admin/delete/{id}', 'Admin\CommentController@destroy')->name('admin.comment.destroy');
-    });
 });
-
-// For testing roles
-Route::get('/test', 'HomeController@index')->name('test');
