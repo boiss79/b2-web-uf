@@ -12,5 +12,5 @@
                 <p>Il n'y a pas de produit.</p>
             @endforelse
         </div>
-
+    </div>
 @endsection

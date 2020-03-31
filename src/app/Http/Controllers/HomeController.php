@@ -16,7 +16,7 @@ class HomeController extends Controller
     public function index()
     {
         return view('home', [
-            'products' => Product::orderBy('created_at', 'desc')->take(3)->get()
+            'products' => Product::whereNotNull('published_at')->orderBy('created_at', 'desc')->take(3)->get()
         ]);
     }
 }

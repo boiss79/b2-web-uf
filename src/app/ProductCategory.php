@@ -17,8 +17,12 @@ class ProductCategory extends Model
         return $this->hasMany('App\Product', 'category_id');
     }
 
+    public function approvedProducts() {
+        return $this->products()->whereNotNull('published_at')->orderBy('created_at', 'DESC');
+    }
+
     public function threeProducts(){
-        return $this->products()->orderBy('created_at', 'DESC')->limit(3);
+        return $this->approvedProducts()->limit(3);
     }
 
     public function getRouteKeyName() {

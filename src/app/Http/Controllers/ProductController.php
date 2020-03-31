@@ -26,7 +26,7 @@ class ProductController extends Controller
 
     public function indexByCategory(ProductCategory $category) {
         return view('products.category.index', [
-            'products' => $category->products,
+            'products' => $category->approvedProducts,
             'category' => $category
         ]);
     }

@@ -10,10 +10,10 @@
             <nav>
                 <ul class="flex items-center">
                     <li>
-                        <a href="{{ route('admin.products')}}" class="{{ (request()->is('admin/products')) ? 'font-medium' : '' }}">Produits</a>
+                        <a href="{{ route('admin.products.index')}}" class="{{ (request()->is('admin/products')) ? 'font-medium' : '' }}">Produits</a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.users')}}" class="{{ (request()->is('admin/users')) ? 'font-medium' : '' }}">Utilisateurs</a>
+                        <a href="{{ route('admin.users.index')}}" class="{{ (request()->is('admin/users')) ? 'font-medium' : '' }}">Utilisateurs</a>
                     </li>
                     <li class="relative">
                         <button class="flex items-center focus:outline-none" id="dropdown-button">

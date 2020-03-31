@@ -22,4 +22,18 @@ class ProductController extends Controller
             'nbNotApprovedProducts' => $nbNotApprovedProducts
         ]);
     }
+
+    public function show(Product $product) {
+        return view('admin.products.show', [
+            'product' => $product
+        ]);
+    }
+
+    public function update(Product $product) {
+        $product->update([
+            'published_at' => now()
+        ]);
+
+        return redirect(route('admin.products.index'))->with('green', 'Le produit a bien été approuvée.');
+    }
 }

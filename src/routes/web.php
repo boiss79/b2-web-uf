@@ -51,6 +51,9 @@ Route::get('/profile/{user}', 'UserController@showProfile')->name('users.profile
 Route::group(['middleware' => 'role:admin|moderator'], function () {
     Route::get('/admin', 'Admin\HomeController@index')->name('admin.home');
     Route::get('/admin/comments', 'Admin\CommentController@index')->name('admin.comments.index');
-    Route::get('/admin/users', 'Admin\UserController@index')->name('admin.users');
-    Route::get('/admin/products', 'Admin\ProductController@index')->name('admin.products');
+    Route::get('/admin/users', 'Admin\UserController@index')->name('admin.users.index');
+
+    Route::get('/admin/products', 'Admin\ProductController@index')->name('admin.products.index');
+    Route::get('/admin/products/{product}', 'Admin\ProductController@show')->name('admin.products.show');
+    Route::put('/admin/products/{product}', 'Admin\ProductController@update')->name('admin.products.update');
 });
