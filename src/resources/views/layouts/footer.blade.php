@@ -4,7 +4,7 @@
         <p>Made with ♥ at Bordeaux</p>
         @can('access administation')
             <p class="mt-3">
-                <a href="{{ route('test') }}">Administration</a>
+                <a href="{{ route('admin.home') }}">Administration</a>
             </p>
         @endcan
     </div>

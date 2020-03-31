@@ -29,7 +29,12 @@
                     <td class="py-4 px-6 border-b border-grey-light"> {{ $comment->content }} </td>
                     <td class="py-4 px-6 border-b border-grey-light">
                         <a href="#" class="bg-blue-600 rounded p-1 text-white">Modifier</a>
-                        <a href="#" class="bg-red-600 rounded p-1 text-white">Supprimer</a>
+                        <form action="{{ route('admin.comment.destroy', $comment->id) }}" method="POST" id="form-delete-comment" onsubmit="return confirm('Etes-vous sûr de vouloir supprimer ce commentaire ? Cette action est irréversible.')" class="">
+                          @csrf
+                          @method('DELETE')
+      
+                          <button type="submit" class="p-1 rounded bg-red-600 text-white focus:outline-none">Supprimer</button>
+                        </form>
                     </td>
                 </tr>
             @empty

@@ -29,7 +29,7 @@
                     <td class="py-4 px-6 border-b border-grey-light"> {{ $product->description }} </td>
                     <td class="py-4 px-6 border-b border-grey-light">
                         <a href="#" class="bg-red-600 rounded p-1 text-white">Supprimer</a>
-                        <a href="#" class="bg-red-600 rounded p-1 text-white">Valider</a>
+                        <a href="#" class="bg-green-600 rounded p-1 text-white">Valider</a>
                     </td>
                 </tr>
             @empty

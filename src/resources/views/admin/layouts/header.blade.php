@@ -13,7 +13,7 @@
                     <a href="{{ route('admin.products')}}" class="{{ (request()->is('products')) ? 'font-medium' : '' }}">Produits</a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.comments') }}" class="{{ (request()->is('login')) ? 'font-medium' : '' }}">Commentaires</a>
+                        <a href="{{ route('admin.comments.index') }}" class="{{ (request()->is('login')) ? 'font-medium' : '' }}">Commentaires</a>
                     </li>
                 </ul>
             </nav>
