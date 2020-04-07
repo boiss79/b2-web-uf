@@ -35,7 +35,7 @@
                         </li>
                         <li>
                             <a href="{{ route('cart.index') }}" class="flex items-center">
-                                <img src="{{ asset('images/icons/basket.png') }}" alt="Icone panier" class="w-6 h-6 mr-2" /> 0
+                                <img src="{{ asset('images/icons/basket.png') }}" alt="Icone panier" class="w-6 h-6 mr-2" /> {{ count(\Cart::getContent()) }}
                             </a>
                         </li>
                         <li class="relative">
