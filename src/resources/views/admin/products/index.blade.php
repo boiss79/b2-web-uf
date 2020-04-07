@@ -32,7 +32,7 @@
                 <th class="uppercase text-left px-5 py-3 text-gray-600 font-medium rounded-tl-lg">Produit</th>
                 <th class="uppercase text-left px-5 py-3 text-gray-600 font-medium">Propriétaire</th>
                 <th class="uppercase text-left px-5 py-3 text-gray-600 font-medium">Créé le</th>
-                <th class="uppercase text-left px-5 py-3 text-gray-600 font-medium">Statut</th>
+                <th class="uppercase text-left px-5 py-3 text-gray-600 font-medium rounded-tr-lg">Statut</th>
             </tr>
         </thead>
 
