@@ -13,9 +13,21 @@
                 <p class="text-2xl">{{$product->description}}</p>
             </div>
             <div class="text-center">
-                <button href="#" class="mb-5 w-full bg-black rounded shadow text-white text-2xl py-2 hover:bg-gray-900 text-center">
-                    Ajouter au panier
-                </button>
+                @auth
+                    <form method="POST" action="{{route('cart.add')}}">
+                        @csrf
+                        @method('POST')
+                        <input name="id" type="hidden" value="{{$product->id}}">
+                        <button class="mb-5 w-full bg-black rounded shadow text-white text-2xl py-2 hover:bg-gray-900 text-center" type="submit">
+                            <i class="fas fa-shopping-basket mr-1"></i>
+                            Ajouter au panier
+                        </button>
+                    </form>
+                @else
+                    <p>
+                    <a href="{{ route('login') }}" class="text-blue-500">Connectez-vous</a> ou <a href="{{ route('register') }}" class="text-blue-500">inscrivez-vous</a> pour acheter cette fiche!
+                    </p>
+                @endauth
             </div>
         </div>
     </div>

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +30,10 @@ Route::middleware('auth')->group(function () {
 });
 Route::get('/products/category/{category}', 'ProductController@indexByCategory')->name('products.category.index');
 Route::get('/products/{product}', 'ProductController@show')->name('products.show');
+
+//Cart 
+Route::post('/cart-add', 'CartController@add')->name('cart.add');
+Route::post('/cart-remove', 'CartController@remove')->name('cart.remove');
 
 // Users
 Route::middleware('auth')->group(function () {
