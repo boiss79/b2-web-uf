@@ -24,7 +24,7 @@ class CartController extends Controller
     }
 
     public function remove(Request $request) {
-        Cart::remove($request->id);
+        \Cart::remove($request->id);
 
         return back()->with('success', 'L\'article a bien été supprimé');
     }
@@ -34,7 +34,7 @@ class CartController extends Controller
     }
 
     public function clear() {
-        Cart::clear();
+        \Cart::clear();
 
         return back()->with('green', 'Votre panier a bien été vidé.');
     }
