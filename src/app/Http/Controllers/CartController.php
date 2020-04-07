@@ -14,19 +14,19 @@ class CartController extends Controller
         $product = Product::find($request->id);
 
         if (\Cart::get($product->id)) {
-            return back()->with('error', 'Le produit que vous avez sélectionné' . $product->name . ' est déjà dans votre panier !');
+            return back()->with('red', 'Le produit ' . $product->name . ' est déjà dans votre panier.');
         }
 
         \Cart::add($product->id, $product->name, $product->price, 1, array());
 
-        return back()->with('success', $product->name . ' a bien été ajouté au panier !');
+        return back()->with('green', $product->name . ' a bien été ajouté au panier !');
 
     }
 
     public function remove(Request $request) {
         \Cart::remove($request->id);
 
-        return back()->with('success', 'L\'article a bien été supprimé');
+        return back()->with('green', 'L\'article a bien été supprimé');
     }
 
     public function index() {
