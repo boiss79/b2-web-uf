@@ -30,6 +30,9 @@ Route::middleware('auth')->group(function () {
 Route::get('/products/category/{category}', 'ProductController@indexByCategory')->name('products.category.index');
 Route::get('/products/{product}', 'ProductController@show')->name('products.show');
 
+// Cart
+Route::get('/cart', 'CartController@index')->name('cart.index');
+
 // Users
 Route::middleware('auth')->group(function () {
     // Profile

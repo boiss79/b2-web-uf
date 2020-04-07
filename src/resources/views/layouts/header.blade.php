@@ -34,7 +34,7 @@
                             <a href="{{ route('products.index') }}" class="{{ (request()->is('products')) ? 'font-medium' : '' }}">Nos fiches</a>
                         </li>
                         <li>
-                            <a href="#" class="flex items-center">
+                            <a href="{{ route('cart.index') }}" class="flex items-center">
                                 <img src="{{ asset('images/icons/basket.png') }}" alt="Icone panier" class="w-6 h-6 mr-2" /> 0
                             </a>
                         </li>
