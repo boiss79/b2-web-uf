@@ -19,8 +19,6 @@ class CartController extends Controller
 
         \Cart::add($product->id, $product->name, $product->price, 1, array());
 
-        dd(\Cart::getContent());
-
         return back()->with('success', $product->name . ' a bien été ajouté au panier !');
 
     }
