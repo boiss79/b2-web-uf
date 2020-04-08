@@ -68,6 +68,8 @@ Route::group(['middleware' => 'role:admin|moderator'], function () {
 
     // Categories
     Route::get('/admin/categories', 'Admin\ProductCategoryController@index')->name('admin.categories.index');
+    Route::get('/admin/categories/create', 'Admin\ProductCategoryController@create')->name('admin.categories.create');
+    Route::post('/admin/categories', 'Admin\ProductCategoryController@store')->name('admin.categories.store');
     Route::get('/admin/categories/{category}', 'Admin\ProductCategoryController@edit')->name('admin.categories.edit');
     Route::put('/admin/categories/{category}', 'Admin\ProductCategoryController@update')->name('admin.categories.update');
     Route::delete('/admin/categories/{category}', 'Admin\ProductCategoryController@destroy')->name('admin.categories.destroy');
@@ -75,6 +77,6 @@ Route::group(['middleware' => 'role:admin|moderator'], function () {
     // Users
     Route::group(['middleware' => 'role:admin'], function () {
         Route::get('/admin/users', 'Admin\UserController@index')->name('admin.users.index');
-        Route::delete('/admin/users/delete/{user}', 'Admin\UserController@destroy')->name('admin.users.destroy');
+        Route::delete('/admin/users/{user}', 'Admin\UserController@destroy')->name('admin.users.destroy');
     });
 });
