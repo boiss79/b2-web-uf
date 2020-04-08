@@ -51,9 +51,10 @@ Route::middleware('auth')->group(function () {
 });
 Route::get('/profile/{user}', 'UserController@showProfile')->name('users.profile.show');
 
-// Route
+// Messages
 Route::get('/contact', 'MessageController@create')->name('contact.create');
 Route::post('/contact/store', 'MessageController@store')->name('contact.store');
+
 
 
 // -----------------
@@ -78,6 +79,12 @@ Route::group(['middleware' => 'role:admin|moderator'], function () {
     Route::get('/admin/categories/{category}', 'Admin\ProductCategoryController@edit')->name('admin.categories.edit');
     Route::put('/admin/categories/{category}', 'Admin\ProductCategoryController@update')->name('admin.categories.update');
     Route::delete('/admin/categories/{category}', 'Admin\ProductCategoryController@destroy')->name('admin.categories.destroy');
+
+    // Messages
+    Route::get('/admin/messages', 'Admin\MessageController@index')->name('admin.messages.index');
+    Route::group(['middleware' => 'role:admin'], function () {
+        Route::delete('/admin/messages/{message}', 'Admin\MessageController@destroy')->name('admin.messages.destroy');
+    });
 
     // Users
     Route::group(['middleware' => 'role:admin'], function () {

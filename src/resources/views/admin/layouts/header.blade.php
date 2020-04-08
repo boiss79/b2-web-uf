@@ -20,6 +20,9 @@
                             <a href="{{ route('admin.users.index')}}" class="{{ (request()->is('admin/users')) ? 'font-medium' : '' }}">Utilisateurs</a>
                         </li>
                     @endcan
+                    <li>
+                        <a href="{{ route('admin.messages.index')}}" class="{{ (request()->is('admin/messages')) ? 'font-medium' : '' }}">Messages</a>
+                    </li>
                     <li class="relative">
                         <button class="flex items-center focus:outline-none" id="dropdown-button">
                             <img src="{{ asset('images/avatar.svg') }}" alt="Image avatar par défaut" class="w-10 h-10" />
@@ -40,3 +43,7 @@
         </div>
     </div>
 </header>
+
+@if ($alert = session('green'))
+    <x-alert color="green" :message="$alert" />
+@endif
