@@ -25,7 +25,7 @@ class CreateProductsTable extends Migration
             $table->timestamps();
 
 
-            $table->foreign('category_id')->references('id')->on('product_categories');
+            $table->foreign('category_id')->references('id')->on('product_categories')->onDelete('cascade');
             $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

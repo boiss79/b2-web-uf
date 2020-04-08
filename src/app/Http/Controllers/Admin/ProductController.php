@@ -7,6 +7,7 @@ use App\ProductComment;
 use App\ProductCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -35,5 +36,12 @@ class ProductController extends Controller
         ]);
 
         return redirect(route('admin.products.index'))->with('green', 'Le produit a bien été approuvée.');
+    }
+
+    public function destroy(Product $product) {
+        Storage::delete($product->url_sheet);
+        $product->delete();
+
+        return redirect(route('admin.products.index'))->with('green', 'Le produit a bien été supprimé.');
     }
 }
