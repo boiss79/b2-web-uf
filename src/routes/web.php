@@ -51,6 +51,10 @@ Route::middleware('auth')->group(function () {
 });
 Route::get('/profile/{user}', 'UserController@showProfile')->name('users.profile.show');
 
+// Payment
+Route::get('/payment','PaymentController@prepare')->name('payment.prepare');
+Route::get('/payment-success','PaymentController@success')->name('payment.success');
+
 // -----------------
 //      ADMIN
 // -----------------
