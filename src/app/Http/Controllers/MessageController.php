@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Message;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreMessage;
 
 class MessageController extends Controller
 {
@@ -24,7 +25,7 @@ class MessageController extends Controller
      */
     public function create()
     {
-        //
+        return view('contact.create');
     }
 
     /**
@@ -33,9 +34,13 @@ class MessageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreMessage $request)
     {
-        //
+        $validated = $request->validated();
+
+        Message::create($validated);
+
+        return redirect()->route('home')->with('green', 'Votre message à bien été envoyé ! Il sera traité dans les plus brefs délais ...');
     }
 
     /**

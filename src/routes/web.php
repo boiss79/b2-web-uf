@@ -51,6 +51,11 @@ Route::middleware('auth')->group(function () {
 });
 Route::get('/profile/{user}', 'UserController@showProfile')->name('users.profile.show');
 
+// Route
+Route::get('/contact', 'MessageController@create')->name('contact.create');
+Route::post('/contact/store', 'MessageController@store')->name('contact.store');
+
+
 // -----------------
 //      ADMIN
 // -----------------
