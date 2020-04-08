@@ -65,11 +65,23 @@ Route::group(['middleware' => 'role:admin|moderator'], function () {
     Route::get('/admin/comments', 'Admin\CommentController@index')->name('admin.comments.index');
     Route::get('/admin/users', 'Admin\UserController@index')->name('admin.users.index');
 
+    // Products
     Route::get('/admin/products', 'Admin\ProductController@index')->name('admin.products.index');
     Route::get('/admin/products/{product}', 'Admin\ProductController@show')->name('admin.products.show');
     Route::put('/admin/products/{product}', 'Admin\ProductController@update')->name('admin.products.update');
-    Route::get('/admin/users', 'Admin\UserController@index')->name('admin.users.index');
+    Route::delete('/admin/products/{product}', 'Admin\ProductController@destroy')->name('admin.products.destroy');
+
+    // Categories
+    Route::get('/admin/categories', 'Admin\ProductCategoryController@index')->name('admin.categories.index');
+    Route::get('/admin/categories/create', 'Admin\ProductCategoryController@create')->name('admin.categories.create');
+    Route::post('/admin/categories', 'Admin\ProductCategoryController@store')->name('admin.categories.store');
+    Route::get('/admin/categories/{category}', 'Admin\ProductCategoryController@edit')->name('admin.categories.edit');
+    Route::put('/admin/categories/{category}', 'Admin\ProductCategoryController@update')->name('admin.categories.update');
+    Route::delete('/admin/categories/{category}', 'Admin\ProductCategoryController@destroy')->name('admin.categories.destroy');
+
+    // Users
     Route::group(['middleware' => 'role:admin'], function () {
-        Route::delete('/admin/users/delete/{user}', 'Admin\UserController@destroy')->name('admin.users.destroy');
+        Route::get('/admin/users', 'Admin\UserController@index')->name('admin.users.index');
+        Route::delete('/admin/users/{user}', 'Admin\UserController@destroy')->name('admin.users.destroy');
     });
 });

@@ -32,7 +32,8 @@
                 <th class="uppercase text-left px-5 py-3 text-gray-600 font-medium rounded-tl-lg">Produit</th>
                 <th class="uppercase text-left px-5 py-3 text-gray-600 font-medium">Propriétaire</th>
                 <th class="uppercase text-left px-5 py-3 text-gray-600 font-medium">Créé le</th>
-                <th class="uppercase text-left px-5 py-3 text-gray-600 font-medium rounded-tr-lg">Statut</th>
+                <th class="uppercase text-left px-5 py-3 text-gray-600 font-medium">Statut</th>
+                <th class="uppercase text-left px-5 py-3 text-gray-600 font-medium rounded-tr-lg">Voir</th>
             </tr>
         </thead>
 
@@ -59,6 +60,11 @@
                                 <span>Non approuvée</span>
                             </div>
                         @endif
+                    </td>
+                    <td class="px-5 py-5">
+                        <a href="{{ route('admin.products.show', $product) }}">
+                            <img src="{{ asset('images/icons/eye.svg') }}" alt="Icone oeil" class="w-5 h-5" />
+                        </a>
                     </td>
                 </tr>
             @endforeach

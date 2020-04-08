@@ -12,7 +12,7 @@ class UserController extends Controller
     public function index(){
 
         return view('admin.users.index', [
-            "users" => User::all(),
+            'users' => User::all(),
         ]);
     }
 
@@ -25,6 +25,6 @@ class UserController extends Controller
     public function destroy(User $user){
         $user->delete();
 
-        return redirect()->route('admin.users');
+        return redirect()->route('admin.users.index')->with('green', 'L\'tilisateur a bien été supprimé.');
     }
 }

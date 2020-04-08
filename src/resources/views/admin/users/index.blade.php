@@ -1,47 +1,46 @@
 @extends('admin.layouts.app')
-
 @section('title', 'Utilisateurs')
 
 @section('content')
+<div class="container my-10">
+    <h2 class="text-5xl font-semibold mb-5">Utilisateurs</h2>
+    <p>Gestion des utilisateurs. Vous pouvez voir les informations sur les utilisateurs et supprimer des comptes.</p>
 
-    <h2 class="text-center text-5xl font-semibold my-10">Administration des utilisateurs</h2>
-
-    <div class="w-4/5 mx-auto">
-    <div class="bg-white shadow-md rounded my-6">
-      <table class="text-left w-full ">
-        <thead>
-          <tr>
-            <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">#</th>
-            <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Nom</th>
-            <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Prénom</th>
-            <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Nombre de Fiches</th>
-            <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Description</th>
-            <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Actions</th>
-          </tr>
+    <h2 class="text-4xl font-semibold my-5">Liste des utilisateurs</h2>
+    <table class="bg-white w-full rounded-lg shadow-lg text-sm">
+        <thead class="bg-gray-300">
+            <tr class="border-b-2">
+                <th class="uppercase text-left px-5 py-3 text-gray-600 font-medium rounded-tl-lg">#</th>
+                <th class="uppercase text-left px-5 py-3 text-gray-600 font-medium">Nom</th>
+                <th class="uppercase text-left px-5 py-3 text-gray-600 font-medium">Créé le</th>
+                <th class="uppercase text-left px-5 py-3 text-gray-600 font-medium">Nb. de fiches</th>
+                <th class="uppercase text-left px-5 py-3 text-gray-600 font-medium rounded-tr-lg">Actions</th>
+            </tr>
         </thead>
+
         <tbody>
-            @forelse ($users as $user)
-                <tr class="hover:bg-grey-lighter">
-                    <td class="py-4 px-6 border-b border-grey-light"> {{ $user->id }} </td>
-                    <td class="py-4 px-6 border-b border-grey-light"> {{ $user->last_name }} </td>
-                    <td class="py-4 px-6 border-b border-grey-light"> {{ $user->first_name }} </td>
-                    <td class="py-4 px-6 border-b border-grey-light"> {{ $user->products->count() }} </td>
-                    <td class="py-4 px-6 border-b border-grey-light"> {{ $user->description }} </td>
-                    <td class="py-4 px-6 border-b border-grey-light">
-                      <form action="{{ route('admin.users.destroy', $user) }}" method="POST" id="form-delete-user" onsubmit="return confirm('Etes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.')" class="">
-                        @csrf
-                        @method('DELETE')
-    
-                        <button type="submit" class="bg-red-600 rounded p-1 text-white">Supprimer</button>
-                      </form>
+            @foreach ($users as $user)
+                <tr class="border-b">
+                    <td class="px-5 py-5">{{ $loop->iteration }}</td>
+                    <td class="px-5 py-5">
+                        <div class="flex items-center">
+                            <img src="{{ asset('images/avatar.svg') }}" alt="Image avatar" class="w-5 h-5 mr-2" />
+                            {{ $user->fullName }}
+                        </div>
+                    </td>
+                    <td class="px-5 py-5">{{ date('d M Y', strtotime($user->created_at)) }}</td>
+                    <td class="px-5 py-5">{{ count($user->products) }}</td>
+                    <td class="px-5 py-5">
+                        <form action="{{ route('admin.users.destroy', $user) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="submit" class="text-red-500">Supprimer</button>
+                        </form>
                     </td>
                 </tr>
-            @empty
-            
-            @endforelse
+            @endforeach
         </tbody>
-      </table>
-    </div>
-  </div>
-
+    </table>
+</div>
 @endsection

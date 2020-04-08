@@ -27,7 +27,12 @@
                 <button class="w-full bg-green-500 py-2 rounded-md shadow-md hover:bg-green-400">Approuver la fiche</button>
             </form>
 
-            <a href="#" class="bg-red-600 py-2 rounded-md shadow-md hover:bg-red-400">Supprimer la fiche</a>
+            <form action="{{ route('admin.products.destroy', $product) }}" method="POST">
+                @csrf
+                @method('DELETE')
+
+                <button class="w-full bg-red-600 py-2 rounded-md shadow-md hover:bg-red-400" type="submit">Supprimer la fiche</button>
+            </form>
         </div>
     </div>
 @endsection
