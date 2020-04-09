@@ -84,6 +84,7 @@ Route::group(['middleware' => 'role:admin|moderator'], function () {
 
     // Messages
     Route::get('/admin/messages', 'Admin\MessageController@index')->name('admin.messages.index');
+    Route::get('/admin/messages/{message}', 'Admin\MessageController@show')->name('admin.messages.show');
     Route::group(['middleware' => 'role:admin'], function () {
         Route::delete('/admin/messages/{message}', 'Admin\MessageController@destroy')->name('admin.messages.destroy');
     });

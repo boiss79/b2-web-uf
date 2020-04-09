@@ -19,4 +19,10 @@ class MessageController extends Controller
         
         return redirect()->route('admin.messages.index')->with('green', 'Le message a bien été supprimée.');
     }
+
+    public function show(Message $message){
+        return view('admin.messages.show', [
+            'message' => $message
+        ]);
+    }
 }

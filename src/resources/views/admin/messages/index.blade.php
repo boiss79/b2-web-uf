@@ -27,13 +27,18 @@
                     <td class="px-5 py-5">{{ $message->first_name }}</td>
                     <td class="px-5 py-5">{{ $message->email }}</td>
                     <td class="px-5 py-5">{{ $message->object }}</td>
-                    <td class="px-5 py-5">{{ $message->content }}</td>
+                    <td class="px-5 py-5">{{ Str::limit($message->content, 60) }}</td>
                     <td class="px-5 py-5">
-                        <div class="flex">
+                        <div class="flex items-center">
                             <form action="{{ route('admin.messages.destroy', $message) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="text-red-500">Supprimer</button>
+                                <button type="submit" class="text-red-500 mr-2">Supprimer</button>
+                            </form>
+                            <form class="px-4 py-4">
+                            <a href="{{ route("admin.messages.show", $message->id)}}">
+                                    <img src="{{ asset('images/icons/eye.svg') }}" alt="Icone oeil" style="width:40px;height:40px;" />
+                                </a>
                             </form>
                         </div>
                     </td>
