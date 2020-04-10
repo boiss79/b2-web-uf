@@ -55,7 +55,7 @@ class User extends Authenticatable
      *
      * @return int
     */ 
-    public function nbProducts(){
+    public function nbProducts() {
         $products = $this->hasMany('App\Product', 'owner_id');
         return $products->count();
     }
@@ -63,14 +63,14 @@ class User extends Authenticatable
     /**
      * Get products associated with the user.
      */
-    public function productsPurchaseds(){
-        return $this->hasMany('App\Product','owner_id');
+    public function productPurchased() {
+        return $this->hasMany('App\ProductPurchased', 'owner_id');
     }
 
     /**
      * Get the comments associated at this user.
     */
-    public function userComments()
+    public function comments()
     {
         return $this->hasMany('App\ProductComment','user_id');
     }
@@ -78,8 +78,12 @@ class User extends Authenticatable
     /**
      * Get the ratings associated at this user.
     */
-    public function userRatings()
+    public function productRating()
     {
         return $this->hasMany('App\ProductRating','user_id');
+    }
+
+    public function orders() {
+        return $this->hasMany('App\Order', 'user_id');
     }
 }

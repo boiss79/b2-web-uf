@@ -17,14 +17,14 @@ class ProductPurchased extends Model
     */
     public function owner()
     {
-        return $this->belongsTo('App\User','owner_id');
+        return $this->belongsTo('App\User', 'owner_id');
     }
        
     /**
      * Get the user that owns the product.
     */
-    public function buyer()
+    public function orders()
     {
-        return $this->belongsTo('App\User','buyer_id');
+        return $this->belongsTo('App\Order', 'order_id');
     }
 }
