@@ -22,7 +22,7 @@ class PaymentController extends Controller
                     'value' => $totalPrice
                 ],
                 'description' => 'My first API payment',
-                'redirectUrl' => route('payment.success'),
+                'redirectUrl' => route('payment.check'),
             ]);
 
             if ($this->checkCart($payment->id)) {
@@ -37,8 +37,21 @@ class PaymentController extends Controller
         return redirect()->route('home')->with('red', 'Votre panier est vide.');
     }
 
-    public function success() {
-        echo 'payment success';
+    public function checkPayment() {
+        $order = Auth::user()->orders()->latest()->first();
+        $paymentId = $order->payment_token;
+        $payment = Mollie::api()->payments()->get($paymentId);
+
+        if (!$payment->isPaid()) {
+            ProductPurchased::where(['order_id' => $order->id])->delete();
+            $order->delete();
+            
+            return redirect()->route('cart.index')->with('red', 'Il y a une erreur lors du paiement. Veuillez réessayer.');
+        }
+
+        \Cart::clear();
+
+        return redirect()->route('home')->with('green', 'Votre commande a bien été prise en compte. Merci !');
     }
 
     private function checkCart($paymentToken) {
@@ -57,7 +70,7 @@ class PaymentController extends Controller
                 $productPurchased = Product::findOrFail($id);
 
                 if ($productPurchased->price === $product->price) {
-                    $data = array_merge($productPurchased->toArray(), ['order_id' => $order->id]);
+                    $data = array_merge($productPurchased->toArray(), ['order_id' => $order->id, 'product_id' => $product->id]);
                     ProductPurchased::create($data);
                 }
                 else {
