@@ -65,3 +65,7 @@
 @if ($alert = session('green'))
     <x-alert color="green" :message="$alert" />
 @endif
+
+@if ($alert = session('red'))
+    <x-alert color="red" :message="$alert" />
+@endif
