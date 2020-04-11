@@ -70,6 +70,7 @@ Route::get('/orders', 'OrderController@index')->name('orders.index')->middleware
 // Comments
 Route::middleware('auth')->group(function () {
     Route::get('/products/{product}/comments/create', 'ProductCommentController@create')->name('products.comments.create');
+    Route::post('/products/{product}/comments', 'ProductCommentController@store')->name('products.comments.store');
 });
 
 // -----------------

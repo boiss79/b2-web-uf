@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\Product;
+use App\ProductRating;
 use App\ProductComment;
 use App\ProductPurchased;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreProductComment;
 
 class ProductCommentController extends Controller
 {
@@ -21,7 +23,13 @@ class ProductCommentController extends Controller
         $productPurchased = ProductPurchased::where(['buyer_id' => Auth::id(), 'product_id' => $product->id])->first();
 
         if (!$productPurchased) {
-            return redirect()->route('home')->with('red', 'Vous devez acheter ce produit pour pouvoir laisser un commentaire.');
+            return redirect()->back()->with('red', 'Vous devez acheter ce produit pour pouvoir laisser un commentaire.');
+        }
+
+        $isCommented = ProductComment::where(['user_id' => Auth::id(), 'product_id' => $productPurchased->product_id])->first();
+
+        if ($isCommented) {
+            return redirect()->back()->with('red', 'Vous avez déjà donné votre avis sur ce produit.');
         }
 
         return view('products.comments.create', [
@@ -35,9 +43,22 @@ class ProductCommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductComment $request)
     {
-        //
+        $validated = $request->validated();
+
+        ProductComment::create([
+            'content' => $validated['content'],
+            'product_id' => intval($validated['product_id']),
+            'user_id' => Auth::id()
+        ]);
+        ProductRating::create([
+            'rating' => intval($validated['rating']),
+            'product_id' => intval($validated['product_id']),
+            'user_id' => Auth::id()
+        ]);
+
+        return redirect()->route('orders.index')->with('green', 'Merci d\'avoir donner votre avis.');
     }
 
     /**

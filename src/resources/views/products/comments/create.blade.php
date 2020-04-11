@@ -8,12 +8,31 @@
 
         <p class="my-5 inline-block bg-gray-500 px-3 py-2 shadow rounded-full text-white font-medium">{{ $product->name }}</p>
 
-        <form action="" method="POST">
+        <form action="{{ route('products.comments.store', $product->product_id) }}" method="POST">
+            @csrf
+            @method('POST')
+
+            <input type="hidden" name="product_id" value="{{ $product->product_id }}" required />
+
             <div class="mb-5">
                 <label for="content" class="font-medium">Votre commentaire</label>
                 <textarea name="content" id="content" rows="6" placeholder="Qu'est-ce que cette fiche vous a apporté ? La recommanderiez-vous ?" class="mt-2 p-3 block w-full border shadow rounded" required></textarea>
             </div>
 
+            <div class="mb-5">
+                <label for="rating" class="font-medium">Note /5</label>
+                <select name="rating" id="rating" class="bg-white mt-2 p-3 block w-full border shadow rounded" required">
+                    <option value="">Veuillez choisir une note</option>
+                    <option value="0">0/5</option>
+                    <option value="1">1/5</option>
+                    <option value="2">2/5</option>
+                    <option value="3">3/5</option>
+                    <option value="4">4/5</option>
+                    <option value="5">5/5</option>
+                </select>
+            </div>
+
+            <button type="submit" class="bg-black rounded shadow text-white text-xl py-2 px-3 hover:bg-gray-900">Publier mon commentaire</button>
         </form>
     </div>
 @endsection 
