@@ -64,6 +64,11 @@ Route::middleware('auth')->group(function () {
 // Orders
 Route::get('/orders', 'OrderController@index')->name('orders.index')->middleware('auth');
 
+// Comments
+Route::middleware('auth')->group(function () {
+    Route::get('/products/{product}/comments/create', 'ProductCommentController@create')->name('products.comments.create');
+});
+
 // -----------------
 //      ADMIN
 // -----------------

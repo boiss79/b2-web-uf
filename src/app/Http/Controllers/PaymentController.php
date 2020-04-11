@@ -70,7 +70,7 @@ class PaymentController extends Controller
                 $productPurchased = Product::findOrFail($id);
 
                 if ($productPurchased->price === $product->price) {
-                    $data = array_merge($productPurchased->toArray(), ['order_id' => $order->id, 'product_id' => $product->id]);
+                    $data = array_merge($productPurchased->toArray(), ['order_id' => $order->id, 'product_id' => $product->id, 'buyer_id' => Auth::id()]);
                     ProductPurchased::create($data);
                 }
                 else {

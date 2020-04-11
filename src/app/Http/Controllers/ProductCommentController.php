@@ -2,29 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
+use App\Product;
 use App\ProductComment;
+use App\ProductPurchased;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductCommentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Product $product)
     {
-        //
+        $productPurchased = ProductPurchased::where(['buyer_id' => Auth::id(), 'product_id' => $product->id])->first();
+
+        if (!$productPurchased) {
+            return redirect()->route('home')->with('red', 'Vous devez acheter ce produit pour pouvoir laisser un commentaire.');
+        }
+
+        return view('products.comments.create', [
+            'product' => $productPurchased
+        ]);
     }
 
     /**
