@@ -17,6 +17,7 @@
                 @if ($product->product_id)
                     <a href="{{ route('products.show', $product->product_id) }}" class="inline-block px-3 py-2 bg-gray-600 rounded shadow text-white hover:bg-gray-500">Voir le produit</a>
                 @endif
+                <a href="#" class="inline-block mt-3 px-3 py-2 bg-yellow-500 rounded shadow text-white hover:bg-yellow-400">Laisser un avis</a>
             </div>
             <span class="text-right">{{ $product->price }} &euro;</span>
         </div>

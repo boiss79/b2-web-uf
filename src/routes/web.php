@@ -56,11 +56,13 @@ Route::get('/contact', 'MessageController@create')->name('contact.create');
 Route::post('/contact/store', 'MessageController@store')->name('contact.store');
 
 // Payment
-Route::get('/payment', 'PaymentController@prepare')->name('payment.prepare');
-Route::get('/check-payment', 'PaymentController@checkPayment')->name('payment.check');
+Route::middleware('auth')->group(function () {
+    Route::get('/payment', 'PaymentController@prepare')->name('payment.prepare');
+    Route::get('/check-payment', 'PaymentController@checkPayment')->name('payment.check');
+});
 
 // Orders
-Route::get('/orders', 'OrderController@index')->name('orders.index');
+Route::get('/orders', 'OrderController@index')->name('orders.index')->middleware('auth');
 
 // -----------------
 //      ADMIN
