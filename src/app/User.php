@@ -68,14 +68,6 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the comments associated at this user.
-    */
-    public function comments()
-    {
-        return $this->hasMany('App\ProductComment','user_id');
-    }
-
-    /**
      * Get the ratings associated at this user.
     */
     public function productRating()
