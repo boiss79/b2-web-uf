@@ -25,6 +25,6 @@ class UserController extends Controller
     public function destroy(User $user){
         $user->delete();
 
-        return redirect()->route('admin.users.index')->with('green', 'L\'tilisateur a bien été supprimé.');
+        return redirect()->route('admin.users.index')->with('green', 'L\'utilisateur a bien été supprimé.');
     }
 }

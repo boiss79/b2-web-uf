@@ -35,7 +35,7 @@ class ProductController extends Controller
             'published_at' => now()
         ]);
 
-        return redirect(route('admin.products.index'))->with('green', 'Le produit a bien été approuvée.');
+        return redirect(route('admin.products.index'))->with('green', 'Le produit a bien été approuvé.');
     }
 
     public function destroy(Product $product) {

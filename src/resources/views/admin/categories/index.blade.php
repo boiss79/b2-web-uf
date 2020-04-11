@@ -26,11 +26,11 @@
                     <td class="px-5 py-5">{{ date('d M Y', strtotime($category->updated_at)) }}</td>
                     <td class="px-5 py-5">
                         <div class="flex">
-                            <a href="{{ route('admin.categories.edit', $category) }}" class="inline-block mr-2 text-blue-500">Modifier</a>
+                            <a href="{{ route('admin.categories.edit', $category) }}" class="text-white bg-blue-500 rounded-md p-2 hover:bg-blue-600 mr-2">Modifier</a>
                             <form action="{{ route('admin.categories.destroy', $category) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="text-red-500">Supprimer</button>
+                                <button type="submit" class="text-white bg-red-500 rounded-md p-2 hover:bg-red-600 mr-2">Supprimer</button>
                             </form>
                         </div>
                     </td>

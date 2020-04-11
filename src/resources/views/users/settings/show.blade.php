@@ -36,7 +36,7 @@
                         <input type="password" name="new_password_confirmation" id="new_password_confirmation" class="mt-2 p-3 block w-full border shadow rounded" placeholder="Retapez votre nouveau mot de passe" required />
                     </div>
 
-                    <button type="submit" form="form-change-password" class="w-full bg-black rounded shadow text-white text-lg py-2 hover:bg-gray-900">
+                    <button type="submit" form="form-change-password" class="w-full bg-blue-500 rounded shadow text-white text-lg py-2 hover:bg-blue-600">
                         Modifier le mot de passe
                     </button>
                 </form>
@@ -47,7 +47,7 @@
                     @csrf
                     @method('DELETE')
 
-                    <button type="submit" class="font-medium text-red-500 focus:outline-none">Supprimer mon compte</button>
+                    <button type="submit" class=" bg-red-500 p-2 hover:bg-red-600 font-medium rounded shadow text-white focus:outline-none">Supprimer mon compte</button>
                 </form>
             </div>
  
@@ -66,7 +66,7 @@
                     
                     <label for="email" class="font-medium">Adresse email</label>
                     <input type="email" name="email" id="email" class="mt-2 p-3 block w-full border shadow rounded" placeholder="Votre adresse email" value="{{ $user->email }}" required />
-                    <button type="submit" form="form-change-email" class="mt-5 w-full bg-black rounded shadow text-white text-lg py-2 hover:bg-gray-900">
+                    <button type="submit" form="form-change-email" class="mt-5 w-full bg-blue-500 rounded shadow text-white text-lg py-2 hover:bg-blue-600">
                         Modifier l'adresse email
                     </button>
                 </form>
@@ -82,10 +82,10 @@
 
                     <div class="">
                         <input type="checkbox" name="remember" id="remember" class="mr-2" {{ old('remember') ? 'checked' : '' }}>
-                        <label for="remember">nos partenaires</label>
+                        <label for="remember">Nos partenaires</label>
                     </div>
 
-                    <button type="submit" class="mt-5 w-full bg-black rounded shadow text-white text-lg py-2 hover:bg-gray-900">
+                    <button type="submit" class="mt-5 w-full bg-blue-500 rounded shadow text-white text-lg py-2 hover:bg-blue-600">
                         Modifier l'adresse email
                     </button>
                 </form>
