@@ -44,7 +44,7 @@
                             </button>
                             <div id="dropdown-menu" class="absolute hidden mt-5 right-0 bg-white rounded-b-md shadow-lg border-t border-white">
                                 <a href="{{ route('users.profile.show', Auth::user()) }}" class="block py-3 px-4 hover:bg-gray-200 font-medium">{{ Auth::user()->full_name }}</a>
-                                <a href="{{ route('users.profile.show', Auth::user()) }}" class="block py-3 px-4 hover:bg-gray-200">Mes achats</a>
+                                <a href="{{ route('users.purchases.show') }}" class="block py-3 px-4 hover:bg-gray-200">Mes achats</a>
                                 <a href="{{ route('users.settings.show') }}" class="block py-3 px-4 hover:bg-gray-200">Paramètres</a>
                                 <a href="{{ route('logout') }}" class="block py-3 px-4 hover:bg-gray-200" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     Déconnexion

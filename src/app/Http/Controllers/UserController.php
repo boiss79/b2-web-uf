@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Order;
 use App\Http\Requests\UpdateUser;
 use App\Http\Requests\UpdateEmail;
 use Illuminate\Support\Facades\Auth;
@@ -66,6 +67,21 @@ class UserController extends Controller
     public function showSettings()
     {
         return view('users.settings.show', [
+            'user' => Auth::user()
+        ]);
+    }
+
+    /**
+     * Display the user's parameters page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showPurchases()
+    {
+
+        $orders = Order::where(['user_id' => ID_USER])->get();
+
+        return view('users.purchases.show', [
             'user' => Auth::user()
         ]);
     }
