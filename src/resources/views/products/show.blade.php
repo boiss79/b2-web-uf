@@ -3,16 +3,24 @@
 
 @section('content')
     <div class="container my-10">
-        <h2 class="text-center text-5xl font-semibold mb-10">{{$product->name}}</h2>
-        <div class="grid grid-cols-2 gap-10">
+        <h2 class="text-5xl font-medium">{{ $product->name }}</h2>
+        <div class="flex items-center mb-10">
+            <a href="{{ route('products.category.index', Str::lower($product->categories->name)) }}" class="mr-2 px-2 py-1 bg-red-600 text-white rounded shadow">{{ $product->categories->name }}</a>
+            <p class="text-gray-600">Créé par <a href="{{ route('users.profile.show', $product->owner) }}" class="font-medium">{{ $product->owner->fullName }}</a></p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-6">
             <div>
-                <p class="text-2xl font-medium">Crée par : {{$product->owner->first_name}} {{$product->owner->last_name}}</p>
-                <p class="text-2xl font-medium">Catégorie : <a href="{{ route('products.category.index', strtolower($product->categories->name)) }}" class="text-blue-500 hover:underline">{{$product->categories->name}}</a></p>
-                <p class="text-2xl font-medium"> Prix : {{$product->price}} &euro;</p>
-                <p class="text-2xl font-medium">Description :</p>
-                <p class="text-2xl">{{$product->description}}</p>
+                <p class="mb-10">{{ $product->description }}</p>
+
+                <div class="font-medium text-2xl">
+                    <p>Note moyenne <span class="text-yellow-500 ml-2">&#x2605; &#x2605; &#x2605; &#x2605; &#x2606;</span></p>
+                </div>
             </div>
-            <div class="text-center">
+            <div>
+                <p class="text-5xl font-medium text-center">{{ $product->price }} &euro;</p>
+                <p class="text-center mb-5">disponible immédiatement</p>
+
                 @auth
                     <form method="POST" action="{{route('cart.add')}}">
                         @csrf
@@ -25,10 +33,29 @@
                     </form>
                 @else
                     <p>
-                    <a href="{{ route('login') }}" class="text-blue-500">Connectez-vous</a> ou <a href="{{ route('register') }}" class="text-blue-500">inscrivez-vous</a> pour acheter cette fiche!
+                        <a href="{{ route('login') }}" class="text-blue-500">Connectez-vous</a> ou <a href="{{ route('register') }}" class="text-blue-500">inscrivez-vous</a> pour acheter cette fiche!
                     </p>
                 @endauth
             </div>
         </div>
+
+        <h2 class="my-5 text-3xl font-medium">Avis & commentaires</h2>
+
+        @foreach ($comments as $comment)    
+            <div class="bg-white shadow rounded-lg border p-5 my-5">
+                <div class="flex justify-between mb-5">
+                    <div>
+                        <div class="flex items-center font-medium text-lg mb-1">
+                            <img src="{{ asset('images/avatar.svg') }}" alt="Image avatar" class="w-6 h-6 mr-2" />
+                            <p>{{ $comment->user->fullName }}</p>
+                        </div>
+                        <p class="text-gray-600">{{ \Carbon\Carbon::parse($comment->created_at)->format('j F Y') }}</p>
+                    </div>
+                    <p class="text-green-500 font-medium">&#x2714; Achat vérifié</p>
+                </div>
+                <p class="mb-5">{{ $comment->content }}</p>
+                <p class="font-medium">Note : <span class="text-yellow-500">&#x2605; &#x2605; &#x2605; &#x2605; &#x2606;</span></p>
+            </div>
+        @endforeach 
     </div>
 @endsection

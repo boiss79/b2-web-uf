@@ -22,6 +22,8 @@ class CreateProductPurchasedTable extends Migration
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('owner_id');
             $table->unsignedBigInteger('order_id');
+            $table->unsignedBigInteger('buyer_id');
+            $table->unsignedBigInteger('product_id')->nullable();
             $table->dateTime('published_at')->nullable();
             $table->timestamps();
 
@@ -29,6 +31,8 @@ class CreateProductPurchasedTable extends Migration
             $table->foreign('category_id')->references('id')->on('product_categories')->onDelete('cascade');
             $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+            $table->foreign('buyer_id')->references('id')->on('users');
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 

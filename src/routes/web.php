@@ -59,8 +59,18 @@ Route::get('/contact', 'MessageController@create')->name('contact.create');
 Route::post('/contact/store', 'MessageController@store')->name('contact.store');
 
 // Payment
-Route::get('/payment','PaymentController@prepare')->name('payment.prepare');
-Route::get('/payment-success','PaymentController@success')->name('payment.success');
+Route::middleware('auth')->group(function () {
+    Route::get('/payment', 'PaymentController@prepare')->name('payment.prepare');
+    Route::get('/check-payment', 'PaymentController@checkPayment')->name('payment.check');
+});
+
+// Orders
+Route::get('/orders', 'OrderController@index')->name('orders.index')->middleware('auth');
+
+// Comments
+Route::middleware('auth')->group(function () {
+    Route::get('/products/{product}/comments/create', 'ProductCommentController@create')->name('products.comments.create');
+});
 
 // -----------------
 //      ADMIN

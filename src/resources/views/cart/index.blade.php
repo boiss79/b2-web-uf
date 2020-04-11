@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container my-10">
-        <h2 class="text-center text-5xl font-semibold mb-10">Panier</h2>
+        <h2 class="text-center text-5xl font-semibold mb-5">Panier</h2>
 
         @if (!Cart::isEmpty())
             <form method="POST" action="{{ route('cart.clear') }}" class="my-5">
@@ -45,7 +45,10 @@
                 </tbody>
             </table>
 
-            <p class="text-5xl text-right">Total : <span class="font-medium">{{ Cart::getTotal() }} &euro;</span></p>
+            <div class="flex flex-col items-end">
+                <p class="text-5xl text-right">Total : <span class="font-medium">{{ Cart::getTotal() }} &euro;</span></p>
+                <a href="{{ route('payment.prepare') }}" class="bg-black rounded shadow text-white text-2xl px-5 py-2 hover:bg-gray-900">Payer</a>
+            </div>
         @else
             <p class="text-center">Votre panier est vide. Ajoutez des <a href="{{ route('products.index') }}">produits</a> à votre panier !</p>
         @endif

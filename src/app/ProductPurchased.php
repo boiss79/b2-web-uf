@@ -9,7 +9,7 @@ class ProductPurchased extends Model
     protected $table = 'product_purchased';
 
     protected $fillable = [
-        'name','description','price','url_sheet','category_id','owner_id', 'order_id', 'published_at'
+        'name','description','price','url_sheet','category_id','owner_id', 'order_id', 'product_id', 'buyer_id', 'published_at'
     ];
        
     /**
