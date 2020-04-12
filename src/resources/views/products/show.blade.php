@@ -1,8 +1,20 @@
 @extends('layouts.app')
-@section('title', 'Home')
+@section('title', 'Produit')
 
 @section('content')
     <div class="container my-10">
+        @if ($product->owner_id === Auth::id())
+            <div class="mb-5 flex items-center">
+                <a href="{{ route('products.edit', $product) }}" class="bg-blue-500 rounded shadow text-white py-2 px-3 hover:bg-blue-600">Modifier le produit</a>
+                <form action="{{ route('products.destroy', $product) }}" method="POST" class="ml-2" onsubmit="return confirm('Etes-vous sûr de vouloir supprimer votre fiche ? Cette action est irréversible.')">
+                    @csrf
+                    @method('DELETE')
+                    
+                    <button type="submit" class="bg-red-500 p-2 hover:bg-red-600 rounded shadow px-3 py-2 text-white">Supprimer la fiche</button>
+                </form>
+            </div>
+        @endif
+
         <h2 class="text-5xl font-medium">{{ $product->name }}</h2>
         <div class="flex items-center mb-10">
             <a href="{{ route('products.category.index', Str::lower($product->categories->name)) }}" class="mr-2 px-2 py-1 bg-red-600 text-white rounded shadow">{{ $product->categories->name }}</a>

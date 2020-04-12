@@ -110,9 +110,12 @@ Route::group(['middleware' => 'role:admin|moderator'], function () {
         Route::delete('/admin/messages/{message}', 'Admin\MessageController@destroy')->name('admin.messages.destroy');
     });
 
-    // Users
+    // ROLE ADMIN
     Route::group(['middleware' => 'role:admin'], function () {
+        // Users
         Route::get('/admin/users', 'Admin\UserController@index')->name('admin.users.index');
         Route::delete('/admin/users/{user}', 'Admin\UserController@destroy')->name('admin.users.destroy');
+
+        Route::get('/admin/orders', 'Admin\OrderController@index')->name('admin.orders.index');
     });
 });

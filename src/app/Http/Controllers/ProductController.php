@@ -127,9 +127,11 @@ class ProductController extends Controller
         }
         else {
             Storage::delete($product->url_sheet);
+            $newPath = Storage::putFile('products', $request->file('url_sheet'));
             $data = array_merge($validated, [
-                'url_sheet' => Storage::putFile('products', $request->file('url_sheet'))
+                'url_sheet' => $newPath
             ]);
+            ProductPurchased::where(['product_id' => $product->id])->update(['url_sheet' => $newPath]);
             $product->update($data);
         }
 
@@ -146,9 +148,16 @@ class ProductController extends Controller
     {
         $this->authorize('delete', $product);
 
+        $productIsPurchased = ProductPurchased::where(['product_id' => $product->id])->first();
+        
+        if ($productIsPurchased) {
+            $product->update(['published_at' => null]);
+            return redirect()->route('products.index')->with('green', 'Le produit a bien été supprimé.');
+        }
+
         Storage::delete($product->url_sheet);
         $product->delete();
 
-        return redirect()->route('products.index');
+        return redirect()->route('products.index')->with('green', 'Le produit a bien été supprimé.');
     }
 }

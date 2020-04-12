@@ -23,6 +23,9 @@
                     <li>
                         <a href="{{ route('admin.messages.index')}}" class="{{ (request()->is('admin/messages')) ? 'font-medium' : '' }}">Messages</a>
                     </li>
+                    <li>
+                        <a href="{{ route('admin.orders.index')}}" class="{{ (request()->is('admin/orders')) ? 'font-medium' : '' }}">Commandes</a>
+                    </li>
                     <li class="relative">
                         <button class="flex items-center focus:outline-none" id="dropdown-button">
                             <img src="{{ asset('images/avatar.svg') }}" alt="Image avatar par défaut" class="w-10 h-10" />
