@@ -31,17 +31,9 @@ class Product extends Model
     /**
      * Get the comments associated at this product.
     */
-    public function productComments()
+    public function comments()
     {
         return $this->hasMany('App\ProductComment', 'product_id');
-    }
-    
-    /**
-     * Get the ratings associated at this product.
-    */
-    public function productRatings()
-    {
-        return $this->hasMany('App\ProductRating','product_id');
     }
 
 }

@@ -67,14 +67,6 @@ class User extends Authenticatable
         return $this->hasMany('App\ProductPurchased', 'owner_id');
     }
 
-    /**
-     * Get the ratings associated at this user.
-    */
-    public function productRating()
-    {
-        return $this->hasMany('App\ProductRating','user_id');
-    }
-
     public function orders() {
         return $this->hasMany('App\Order', 'user_id');
     }
