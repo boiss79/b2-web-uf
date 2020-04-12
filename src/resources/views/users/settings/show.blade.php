@@ -47,7 +47,7 @@
                     @csrf
                     @method('DELETE')
 
-                    <button type="submit" class=" bg-red-500 p-2 hover:bg-red-600 font-medium rounded shadow text-white focus:outline-none">Supprimer mon compte</button>
+                    <button type="submit" class="bg-red-500 p-2 hover:bg-red-600 font-medium rounded shadow text-white focus:outline-none">Supprimer mon compte</button>
                 </form>
             </div>
  

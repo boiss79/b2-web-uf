@@ -12,6 +12,12 @@ use App\Http\Requests\StoreOrUpdateProductComment;
 
 class ProductCommentController extends Controller
 {
+    public function index() {
+        return view('users.comments.index', [
+            'comments' => ProductComment::where(['user_id' => Auth::id()])->get()
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -106,8 +112,12 @@ class ProductCommentController extends Controller
      * @param  \App\ProductComment  $productComment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProductComment $productComment)
+    public function destroy(ProductComment $comment)
     {
-        //
+        $this->authorize('delete', $comment);
+
+        $comment->delete();
+
+        return redirect()->back()->with('green', 'Le commentaire a bien été supprimé.');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\ProductRating;
 use App\ProductComment;
 use App\ProductCategory;
 use Illuminate\Http\Request;
@@ -73,7 +74,8 @@ class ProductController extends Controller
     {
         return view('products.show', [
             'product' => $product,
-            'comments' => ProductComment::where(['product_id' => $product->id])->get()
+            'comments' => ProductComment::where(['product_id' => $product->id])->get(),
+            'rating' => ProductRating::where(['product_id' => $product->id])->get()
         ]);
     }
 

@@ -51,6 +51,9 @@ Route::middleware('auth')->group(function () {
 
     // Purchases
     Route::get('/profile/purchases', 'UserController@showPurchases')->name('users.purchases.show');
+
+    // Comments
+    Route::get('/comments', 'ProductCommentController@index')->name('users.comments.index');
 });
 Route::get('/profile/{user}', 'UserController@showProfile')->name('users.profile.show');
 
@@ -73,6 +76,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/products/{product}/comments', 'ProductCommentController@store')->name('products.comments.store');
     Route::get('/products/{product}/comments/edit', 'ProductCommentController@edit')->name('products.comments.edit');
     Route::put('/products/{product}/comments', 'ProductCommentController@update')->name('products.comments.update');
+    Route::delete('/comments/{comment}/delete', 'ProductCommentController@destroy')->name('products.comments.destroy');
 });
 
 // -----------------
