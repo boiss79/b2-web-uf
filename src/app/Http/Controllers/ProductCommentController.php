@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Order;
 use App\Product;
 use App\ProductRating;
 use App\ProductComment;
 use App\ProductPurchased;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\StoreProductComment;
+use App\Http\Requests\StoreOrUpdateProductComment;
 
 class ProductCommentController extends Controller
 {
@@ -43,7 +42,7 @@ class ProductCommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProductComment $request)
+    public function store(StoreOrUpdateProductComment $request)
     {
         $validated = $request->validated();
 
@@ -62,25 +61,23 @@ class ProductCommentController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\ProductComment  $productComment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ProductComment $productComment)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\ProductComment  $productComment
      * @return \Illuminate\Http\Response
      */
-    public function edit(ProductComment $productComment)
+    public function edit(Product $product)
     {
-        //
+        $comment = ProductComment::where(['user_id' => Auth::id(), 'product_id' => $product->id])->first();
+
+        if (!$comment) {
+            return redirect()->back()->with('red', 'Vous n\'êtes pas autorisé à réaliser cette action.');
+        }
+
+        return view('products.comments.edit', [
+            'comment' => $comment,
+            'product_rating' => ProductRating::where(['user_id' => Auth::id(), 'product_id' => $product->id])->first()
+        ]);
     }
 
     /**
@@ -90,9 +87,17 @@ class ProductCommentController extends Controller
      * @param  \App\ProductComment  $productComment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ProductComment $productComment)
+    public function update(StoreOrUpdateProductComment $request, Product $product)
     {
-        //
+        $validated = $request->validated();
+
+        $comment = ProductComment::where(['user_id' => Auth::id(), 'product_id' => $product->id])->first();
+        $comment->update(['content' => $validated['content'] ]);
+
+        $rating = ProductComment::where(['user_id' => Auth::id(), 'product_id' => $product->id])->first();
+        $rating->update(['rating' => $validated['rating']]);
+
+        return redirect()->route('orders.index')->with('green', 'Le commentaire a bien été modifié.');
     }
 
     /**

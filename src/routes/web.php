@@ -71,6 +71,8 @@ Route::get('/orders', 'OrderController@index')->name('orders.index')->middleware
 Route::middleware('auth')->group(function () {
     Route::get('/products/{product}/comments/create', 'ProductCommentController@create')->name('products.comments.create');
     Route::post('/products/{product}/comments', 'ProductCommentController@store')->name('products.comments.store');
+    Route::get('/products/{product}/comments/edit', 'ProductCommentController@edit')->name('products.comments.edit');
+    Route::put('/products/{product}/comments', 'ProductCommentController@update')->name('products.comments.update');
 });
 
 // -----------------
