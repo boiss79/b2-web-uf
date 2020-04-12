@@ -14,7 +14,9 @@
                 <p class="mb-10">{{ $product->description }}</p>
 
                 <div class="font-medium text-2xl">
-                    <p>Note moyenne <span class="text-yellow-500 ml-2">&#x2605; &#x2605; &#x2605; &#x2605; &#x2606;</span></p>
+                    <p>Note moyenne <span class="text-yellow-500 ml-2">
+                        @include('includes.average', ['rating' => $average])
+                    </span></p>
                 </div>
             </div>
             <div>
@@ -41,7 +43,7 @@
 
         <h2 class="my-5 text-3xl font-medium">Avis & commentaires</h2>
 
-        @foreach ($comments as $comment)    
+        @forelse ($comments as $comment)    
             <div class="bg-white shadow rounded-lg border p-5 my-5">
                 <div class="flex justify-between mb-5">
                     <div>
@@ -54,8 +56,12 @@
                     <p class="text-green-500 font-medium">&#x2714; Achat vérifié</p>
                 </div>
                 <p class="mb-5">{{ $comment->content }}</p>
-                <p class="font-medium">Note : <span class="text-yellow-500">&#x2605; &#x2605; &#x2605; &#x2605; &#x2606;</span></p>
+                <p class="font-medium">Note : <span class="text-yellow-500">
+                    @include('includes.average', ['rating' => $comment->rating])  
+                </span></p>
             </div>
-        @endforeach 
+        @empty
+            <p>Cette fiche n'a pas de commentaire.</p>
+        @endforelse 
     </div>
 @endsection

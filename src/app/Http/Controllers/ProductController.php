@@ -75,7 +75,7 @@ class ProductController extends Controller
         return view('products.show', [
             'product' => $product,
             'comments' => ProductComment::where(['product_id' => $product->id])->get(),
-            'rating' => ProductRating::where(['product_id' => $product->id])->get()
+            'average' => round(ProductComment::where(['product_id' => $product->id])->avg('rating'))
         ]);
     }
 

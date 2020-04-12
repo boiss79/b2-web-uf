@@ -54,10 +54,6 @@ class ProductCommentController extends Controller
 
         ProductComment::create([
             'content' => $validated['content'],
-            'product_id' => intval($validated['product_id']),
-            'user_id' => Auth::id()
-        ]);
-        ProductRating::create([
             'rating' => intval($validated['rating']),
             'product_id' => intval($validated['product_id']),
             'user_id' => Auth::id()
@@ -81,8 +77,7 @@ class ProductCommentController extends Controller
         }
 
         return view('products.comments.edit', [
-            'comment' => $comment,
-            'product_rating' => ProductRating::where(['user_id' => Auth::id(), 'product_id' => $product->id])->first()
+            'comment' => $comment
         ]);
     }
 
@@ -98,10 +93,10 @@ class ProductCommentController extends Controller
         $validated = $request->validated();
 
         $comment = ProductComment::where(['user_id' => Auth::id(), 'product_id' => $product->id])->first();
-        $comment->update(['content' => $validated['content'] ]);
-
-        $rating = ProductComment::where(['user_id' => Auth::id(), 'product_id' => $product->id])->first();
-        $rating->update(['rating' => $validated['rating']]);
+        $comment->update([
+            'content' => $validated['content'],
+            'rating' => intval($validated['rating'])
+        ]);
 
         return redirect()->route('orders.index')->with('green', 'Le commentaire a bien été modifié.');
     }
