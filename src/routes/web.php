@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/products/{product}/edit', 'ProductController@edit')->name('products.edit');
     Route::put('/products/{product}', 'ProductController@update')->name('products.update');
     Route::delete('/products/{product}', 'ProductController@destroy')->name('products.destroy');
+    Route::get('/storage/products/{filename}', 'ProductController@download')->name('products.file.download');
 });
 Route::get('/products/category/{category}', 'ProductController@indexByCategory')->name('products.category.index');
 Route::get('/products/{product}', 'ProductController@show')->name('products.show');

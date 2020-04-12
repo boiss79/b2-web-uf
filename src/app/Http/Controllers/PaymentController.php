@@ -21,13 +21,11 @@ class PaymentController extends Controller
                     'currency' => 'EUR',
                     'value' => $totalPrice
                 ],
-                'description' => 'My first API payment',
+                'description' => 'Achat d\'un produit provenant de MA FICHE DE REVISION',
                 'redirectUrl' => route('payment.check'),
             ]);
 
             if ($this->checkCart($payment->id)) {
-                $payment = Mollie::api()->payments()->get($payment->id);
-
                 return redirect($payment->getCheckoutUrl(), 303);
             }
 

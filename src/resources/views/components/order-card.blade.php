@@ -13,7 +13,7 @@
         <div class="my-5 grid grid-cols-3 gap-8 items-center text-xl">
             <h3 class="">{{ $product->name }}</h3>
             <div class="text-base">
-                <a href="#" class="inline-block px-3 py-2 bg-blue-500 rounded shadow text-white hover:bg-blue-400 mr-3">Télécharger la fiche</a>
+                <a href="{{ route('products.file.download', Str::replaceArray('products/', [''], $product->url_sheet)) }}" class="inline-block px-3 py-2 bg-blue-500 rounded shadow text-white hover:bg-blue-400 mr-3">Télécharger la fiche</a>
                 @if ($product->product_id)
                     <a href="{{ route('products.show', $product->product_id) }}" class="inline-block px-3 py-2 bg-gray-600 rounded shadow text-white hover:bg-gray-500">Voir le produit</a>
                 @endif

@@ -6,6 +6,7 @@ use App\Product;
 use App\ProductRating;
 use App\ProductComment;
 use App\ProductCategory;
+use App\ProductPurchased;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProduct;
 use App\Http\Requests\UpdateProduct;
@@ -56,7 +57,7 @@ class ProductController extends Controller
         $validated = $request->validated();
         $data = array_merge($validated, [
             'owner_id' => Auth::id(),
-            'url_sheet' => $request->file('url_sheet')->store('/public/products')
+            'url_sheet' => Storage::putFile('products', $request->file('url_sheet'))
         ]);
 
         Product::create($data);
@@ -72,11 +73,25 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+        if (!$product->published_at) {
+            return redirect()->back()->with('red', 'Le produit n\'existe pas.');
+        }
+
         return view('products.show', [
             'product' => $product,
             'comments' => ProductComment::where(['product_id' => $product->id])->get(),
             'average' => round(ProductComment::where(['product_id' => $product->id])->avg('rating'))
         ]);
+    }
+
+    public function download($filename) {
+        $isProductPurchased = ProductPurchased::where(['url_sheet' => 'products/' . $filename, 'buyer_id' => Auth::id()])->first();
+
+        if (!$isProductPurchased) {
+            return redirect()->route('home')->with('red', 'Vous n\'êtes pas autorisé à réaliser cette action.');
+        }
+
+        return Storage::download('products/' . $filename);
     }
 
     /**
@@ -113,7 +128,7 @@ class ProductController extends Controller
         else {
             Storage::delete($product->url_sheet);
             $data = array_merge($validated, [
-                'url_sheet' => $request->file('url_sheet')->store('/public/products')
+                'url_sheet' => Storage::putFile('products', $request->file('url_sheet'))
             ]);
             $product->update($data);
         }
