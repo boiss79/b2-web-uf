@@ -4,7 +4,11 @@
         <p class="text-gray-600 font-medium">{{ \Carbon\Carbon::parse($comment->created_at)->format('j F Y') }}</p>
     </div>
 
-    <p class="border-b-2 pb-5">{{ $comment->content }}</p>
+    <p class="mb-5"">{{ $comment->content }}</p>
+
+    <p class="pb-5 border-b-2 font-medium text-2xl">
+        Note : <span class="ml-2 text-yellow-500 ">@include('includes.average', ['rating' => $comment->rating])</span>
+    </p>
 
     <div class="mt-6 flex">
         <a href="{{ route('products.comments.edit', $comment->product_id) }}" class="bg-blue-500 rounded shadow text-white py-2 px-3 hover:bg-blue-400">Modifier le commentaire</a>

@@ -23,8 +23,8 @@
                 <label for="rating" class="font-medium">Note /5</label>
                 <select name="rating" id="rating" class="bg-white mt-2 p-3 block w-full border shadow rounded" required">
                     <option value="">Veuillez choisir une note</option>
-                    @for ($i = 0; $i < 6; $i++)
-                        <option value="{{ $i }}"@if ($product_rating->rating === $i) selected @endif>{{ $i }}/5</option>
+                    @for ($i = 1; $i < 6; $i++)
+                        <option value="{{ $i }}"@if ($comment->rating === $i) selected @endif>{{ $i }}/5</option>
                     @endfor
                 </select>
             </div>

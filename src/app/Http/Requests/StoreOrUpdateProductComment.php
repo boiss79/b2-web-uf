@@ -25,7 +25,7 @@ class StoreOrUpdateProductComment extends FormRequest
     {
         return [
             'content' => 'required|string',
-            'rating' => 'required|in:0,1,2,3,4,5',
+            'rating' => 'required|in:1,2,3,4,5',
             'product_id' => 'required|exists:products,id'
         ];
     }

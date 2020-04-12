@@ -13,11 +13,13 @@
             <div>
                 <p class="mb-10">{{ $product->description }}</p>
 
-                <div class="font-medium text-2xl">
-                    <p>Note moyenne <span class="text-yellow-500 ml-2">
-                        @include('includes.average', ['rating' => $average])
-                    </span></p>
-                </div>
+                @if ($average != 0)
+                    <div class="font-medium text-2xl">
+                        <p>Note moyenne <span class="text-yellow-500 ml-2">
+                            @include('includes.average', ['rating' => $average])
+                        </span></p>
+                    </div>
+                @endif
             </div>
             <div>
                 <p class="text-5xl font-medium text-center">{{ $product->price }} &euro;</p>

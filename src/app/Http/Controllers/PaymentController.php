@@ -22,7 +22,7 @@ class PaymentController extends Controller
                     'value' => $totalPrice
                 ],
                 'description' => 'Achat d\'un produit provenant de MA FICHE DE REVISION',
-                'redirectUrl' => route('payment.check'),
+                'redirectUrl' => route('payment.check')
             ]);
 
             if ($this->checkCart($payment->id)) {

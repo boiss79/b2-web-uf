@@ -23,12 +23,9 @@
                 <label for="rating" class="font-medium">Note /5</label>
                 <select name="rating" id="rating" class="bg-white mt-2 p-3 block w-full border shadow rounded" required">
                     <option value="">Veuillez choisir une note</option>
-                    <option value="0">0/5</option>
-                    <option value="1">1/5</option>
-                    <option value="2">2/5</option>
-                    <option value="3">3/5</option>
-                    <option value="4">4/5</option>
-                    <option value="5">5/5</option>
+                    @for ($i = 1; $i < 6; $i++)
+                        <option value="{{ $i }}">{{ $i }}/5</option>
+                    @endfor
                 </select>
             </div>
 
