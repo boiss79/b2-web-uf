@@ -9,9 +9,9 @@
 
         @forelse ($categories as $category)
             
-            <h3 class=" text-3xl font-semibold my-10">Nos dernières fiche de {{$category->name}}</h3>
+            <h3 class="text-3xl font-semibold my-10">Nos dernières fiche de {{$category->name}}</h3>
             <a href="{{ route('products.category.index', Str::lower($category->name)) }}" class="hover:underline text-blue-500 text-lg">Voir toutes les fiches de la catégorie {{$category->name}}</a>
-            <div class="my-10 grid grid-cols-3 gap-10">
+            <div class="my-10 grid lg:grid-cols-3 gap-10">
                 @forelse ($category->threeProducts as $product)
                     <x-product-card :product="$product" />
                 @empty

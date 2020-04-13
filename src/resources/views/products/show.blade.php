@@ -15,13 +15,13 @@
             </div>
         @endif
 
-        <h2 class="text-5xl font-medium">{{ $product->name }}</h2>
+        <h2 class="text-2xl lg:text-5xl font-medium mb-3 lg:mb-0">{{ $product->name }}</h2>
         <div class="flex items-center mb-10">
             <a href="{{ route('products.category.index', Str::lower($product->categories->name)) }}" class="mr-2 px-2 py-1 bg-red-600 text-white rounded shadow">{{ $product->categories->name }}</a>
             <p class="text-gray-600">Créé par <a href="{{ route('users.profile.show', $product->owner) }}" class="font-medium">{{ $product->owner->fullName }}</a></p>
         </div>
 
-        <div class="grid grid-cols-2 gap-6">
+        <div class="grid lg:grid-cols-2 gap-6">
             <div>
                 <p class="mb-10">{{ $product->description }}</p>
 
@@ -48,7 +48,7 @@
                         </button>
                     </form>
                 @else
-                    <p>
+                    <p class="text-center">
                         <a href="{{ route('login') }}" class="text-blue-500">Connectez-vous</a> ou <a href="{{ route('register') }}" class="text-blue-500">inscrivez-vous</a> pour acheter cette fiche!
                     </p>
                 @endauth

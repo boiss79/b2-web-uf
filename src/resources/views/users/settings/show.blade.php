@@ -6,7 +6,7 @@
         <h2 class="text-5xl font-semibold">Paramètres</h2>
         <p>Gérer tous les paramètres de votre compte. Changement de mot de passe, changement d'adresse email, suppression du compte...</p>
 
-        <div class="grid grid-cols-2 gap-10 mt-10">
+        <div class="grid lg:grid-cols-2 gap-10 mt-10">
             <div>
                 <h3 class="text-3xl">Gestion du mot de passe</h3>
                 <p>Il est recommandé de changer fréquemment votre mot de passe et de choisir un code robuste. Nous vous recommandons d'utiliser un mot de passe différent sur chaque site.</p>

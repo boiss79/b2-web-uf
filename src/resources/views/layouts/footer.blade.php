@@ -1,6 +1,6 @@
-<footer class="bg-black py-10 shadow-md text-white">
+<footer class="bg-black py-10 shadow-md text-white text-xs lg:text-sm">
     <div class="container">
-        <div class="flex justify-between">
+        <div class="flex flex-col md:flex-row justify-between">
             <div>
                 <p class="mb-3">&copy; 2020 &bull; Ma Fiche de Révision &bull; <a href="{{ route('contact.create')}}" class="underline">Contactez-nous</a></p>
                 <p class="mb-3">Conçu avec ❤️à Bordeaux</p>

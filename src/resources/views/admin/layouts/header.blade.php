@@ -30,7 +30,7 @@
                         <button class="flex items-center focus:outline-none" id="dropdown-button">
                             <img src="{{ asset('images/avatar.svg') }}" alt="Image avatar par défaut" class="w-10 h-10" />
                         </button>
-                        <div id="dropdown-menu" class="absolute hidden mt-5 right-0 bg-gray-900 rounded-b-md shadow-lg border-t border-gray-900">
+                        <div id="dropdown-menu" class="absolute hidden mt-5 right-0 bg-gray-900 rounded-b-md shadow-lg border-t border-gray-900 z-50">
                             <a href="{{ route('users.profile.show', Auth::user()) }}" class="block py-3 px-4 hover:bg-gray-800 font-medium">{{ Auth::user()->full_name }}</a>
                             <a href="{{ route('logout') }}" class="block py-3 px-4 rounded-b-md hover:bg-gray-800" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 Déconnexion

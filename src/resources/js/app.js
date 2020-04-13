@@ -1,3 +1,3 @@
-document.getElementById('dropdown-button').addEventListener('click', () => {
-    document.getElementById('dropdown-menu').classList.toggle('hidden')
+document.getElementById('burger-button').addEventListener('click', () => {
+  document.getElementById('menu').classList.toggle('hidden')
 });

@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="bg-login">
-        <div class="container pt-20">
+        <div class="container pt-10 lg:pt-20">
             <div class="bg-white p-10 rounded shadow-md max-w-lg">
-                <h2 class="font-semibold text-4xl text-center mb-5">Connexion</h2>
+                <h2 class="font-semibold text-2xl lg:text-4xl text-center mb-5">Connexion</h2>
                 
-                <form method="POST" action="{{ route('login') }}">
+                <form method="POST" action="{{ route('login') }}" class="text-sm lg:text-base">
                     @csrf
                     @method('POST')
 
@@ -31,7 +31,7 @@
                         <label for="remember">Se souvenir de moi</label>
                     </div>
 
-                    <button type="submit" class="mb-5 w-full bg-black rounded shadow text-white text-2xl py-2 hover:bg-gray-900">
+                    <button type="submit" class="mb-5 w-full bg-black rounded shadow text-white text-lg lg:text-2xl py-2 hover:bg-gray-900">
                         Se connecter
                     </button>
         

@@ -86,7 +86,6 @@ Route::middleware('auth')->group(function () {
 
 Route::group(['middleware' => 'role:admin|moderator'], function () {
     Route::get('/admin', 'Admin\HomeController@index')->name('admin.home');
-    Route::get('/admin/comments', 'Admin\CommentController@index')->name('admin.comments.index');
     Route::get('/admin/users', 'Admin\UserController@index')->name('admin.users.index');
 
     // Products
@@ -117,5 +116,6 @@ Route::group(['middleware' => 'role:admin|moderator'], function () {
         Route::delete('/admin/users/{user}', 'Admin\UserController@destroy')->name('admin.users.destroy');
 
         Route::get('/admin/orders', 'Admin\OrderController@index')->name('admin.orders.index');
+        Route::get('/admin/orders/{order}', 'Admin\OrderController@show')->name('admin.orders.show');
     });
 });

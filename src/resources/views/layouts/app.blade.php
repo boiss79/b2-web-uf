@@ -15,6 +15,13 @@
         @include('layouts.footer')
 
         <script src="{{ mix('js/app.js') }}"></script>
+        @auth
+            <script>
+                document.getElementById('dropdown-button').addEventListener('click', () => {
+                    document.getElementById('dropdown-menu').classList.toggle('hidden')
+                });
+            </script>
+        @endauth
         @yield('javascripts')
     </body>
 </html>

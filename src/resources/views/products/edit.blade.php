@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container my-10">
-        <h2 class="text-center text-5xl font-semibold mb-10">Modifier une fiche</h2>
+        <h2 class="text-3xl lg:text-5xl font-semibold mb-10">Modifier une fiche</h2>
 
         @if ($errors->any())
             @foreach ($errors->all() as $error)
@@ -11,7 +11,7 @@
             @endforeach
         @endif
 
-        <div class="grid grid-cols-2 gap-10">
+        <div class="grid lg:grid-cols-2 gap-10">
             <form action="{{ route('products.update', $product) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
@@ -49,7 +49,7 @@
                 <button type="submit" class="w-full bg-black rounded shadow text-white text-2xl py-2 hover:bg-gray-900">Publier ma fiche</button>
             </form>
 
-            <img src="https://placehold.it/400x400" alt="" />
+            <img src="{{ asset('images/product-book.svg') }}" alt="Illustration livre" />
         </div>
     </div>
 @endsection

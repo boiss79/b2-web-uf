@@ -104,8 +104,8 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-document.getElementById('dropdown-button').addEventListener('click', function () {
-  document.getElementById('dropdown-menu').classList.toggle('hidden');
+document.getElementById('burger-button').addEventListener('click', function () {
+  document.getElementById('menu').classList.toggle('hidden');
 });
 
 /***/ }),

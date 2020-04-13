@@ -12,8 +12,9 @@
                 <th class="uppercase text-left px-5 py-3 text-gray-600 font-medium rounded-tl-lg">#</th>
                 <th class="uppercase text-left px-5 py-3 text-gray-600 font-medium">Référence</th>
                 <th class="uppercase text-left px-5 py-3 text-gray-600 font-medium">Acheteur</th>
-                <th class="uppercase text-left px-5 py-3 text-gray-600 font-medium">Statut</th>
                 <th class="uppercase text-left px-5 py-3 text-gray-600 font-medium">Date</th>
+                <th class="uppercase text-left px-5 py-3 text-gray-600 font-medium">Prix (&euro;)</th>
+                <th class="uppercase text-left px-5 py-3 text-gray-600 font-medium">Statut</th>
                 <th class="uppercase text-left px-5 py-3 text-gray-600 font-medium rounded-tr-lg">Voir</th>
             </tr>
         </thead>
@@ -29,6 +30,8 @@
                             {{ $order->user->fullName }}
                         </div>
                     </td>
+                    <td class="px-5 py-5">{{ \Carbon\Carbon::parse($order->created_at)->format('j F Y') }}</td>
+                    <td class="px-5 py-5">{{ $order->total_price }} &euro;</td>
                     <td class="px-5 py-5">
                         @if (Mollie::api()->payments()->get($order->payment_token)->status === 'paid')
                             <div class="inline-flex items-center px-2 py-1 bg-green-200 text-green-500 font-medium rounded-full">
@@ -37,9 +40,8 @@
                             </div>
                         @endif
                     </td>
-                    <td class="px-5 py-5">{{ \Carbon\Carbon::parse($order->created_at)->format('j F Y') }}</td>
                     <td class="px-5 py-5">
-                        <a href="#">
+                        <a href="{{ route('admin.orders.show', $order) }}">
                             <img src="{{ asset('images/icons/eye.svg') }}" alt="Icone oeil" class="w-5 h-5" />
                         </a>
                     </td>

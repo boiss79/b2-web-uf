@@ -1,6 +1,6 @@
 <div class="my-10 bg-white rounded-lg border shadow-lg p-5">
     <div class="mb-5">
-        <h3 class="font-medium text-3xl">{{ $comment->product->name }}</h3>
+        <h3 class="font-medium text-xl lg:text-3xl">{{ $comment->product->name }}</h3>
         <p class="text-gray-600 font-medium">{{ \Carbon\Carbon::parse($comment->created_at)->format('j F Y') }}</p>
     </div>
 
@@ -10,10 +10,12 @@
         Note : <span class="ml-2 text-yellow-500 ">@include('includes.average', ['rating' => $comment->rating])</span>
     </p>
 
-    <div class="mt-6 flex">
-        <a href="{{ route('products.comments.edit', $comment->product_id) }}" class="bg-blue-500 rounded shadow text-white py-2 px-3 hover:bg-blue-400">Modifier le commentaire</a>
+    <div class="mt-6 flex flex-col lg:flex-row lg:items-center">
+        <p class="mb-5 lg:mb-0">
+            <a href="{{ route('products.comments.edit', $comment->product_id) }}" class="bg-blue-500 rounded shadow text-white py-2 px-3 hover:bg-blue-400 mr-3">Modifier le commentaire</a>
+        </p>
 
-        <form action="{{ route('products.comments.destroy', $comment) }}" method="POST" class="ml-5">
+        <form action="{{ route('products.comments.destroy', $comment) }}" method="POST">
             @csrf
             @method('DELETE')
 
