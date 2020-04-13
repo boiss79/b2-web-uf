@@ -28,8 +28,9 @@ class ProductController extends Controller
     }
 
     public function indexByCategory(ProductCategory $category) {
+        
         return view('products.category.index', [
-            'products' => $category->approvedProducts,
+            'products' => Product::whereNotNull(['published_at'])->where(['category_id' => $category->id])->get(),
             'category' => $category
         ]);
     }
