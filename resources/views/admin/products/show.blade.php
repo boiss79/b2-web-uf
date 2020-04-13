@@ -3,10 +3,8 @@
 
 @section('content')
     <div class="container my-10">
-        <div class="flex items-center">
-            <span class="bg-red-600 text-sm px-2 py-1 rounded-lg text-white mr-3">{{ $product->categories->name }}</span>
-            <h2 class="text-5xl font-medium">{{ $product->name }}</h2>
-        </div>
+        <h2 class="text-5xl font-medium">{{ $product->name }}</h2>
+        <span class="bg-red-600 text-sm px-2 py-1 rounded-lg text-white mr-3">{{ $product->categories->name }}</span>
 
         <div class="grid grid-cols-2 gap-10 mt-10">
             <div>
@@ -15,7 +13,7 @@
             </div>
 
             <div class="text-center">
-                <span class="text-6xl font-medium leading-none">{{ $product->price }}</span>
+                <span class="text-6xl font-medium leading-none">{{ $product->price }} &euro;</span>
             </div>
         </div>
 
