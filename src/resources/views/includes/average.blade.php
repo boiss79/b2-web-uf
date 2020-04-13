@@ -15,4 +15,5 @@
         &#x2605; &#x2605; &#x2605; &#x2605; &#x2605;
         @break
     @default
+        Pas de note
 @endswitch  
