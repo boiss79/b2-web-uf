@@ -127,7 +127,7 @@ class UserController extends Controller
         // Check if user can destroy his account
         $this->authorize('delete', $authenticatedUser);
 
-        ProductPurchased::where(['owner_id' => Auth::id()])->update(['owner_id' => null]);
+        ProductPurchased::where(['owner_id' => Auth::id()])->update(['owner_id' => null, 'product_id' => null]);
 
         $authenticatedUser->delete();
 
