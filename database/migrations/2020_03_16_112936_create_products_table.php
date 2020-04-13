@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->float('price');
             $table->string('url_sheet');
             $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('owner_id');
+            $table->unsignedBigInteger('owner_id')->nullable();
             $table->dateTime('published_at')->nullable();
             $table->timestamps();
 
