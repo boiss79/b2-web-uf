@@ -20,7 +20,7 @@ class CreateProductPurchasedTable extends Migration
             $table->string('price');
             $table->string('url_sheet');
             $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('owner_id');
+            $table->unsignedBigInteger('owner_id')->nullable();
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('buyer_id');
             $table->unsignedBigInteger('product_id')->nullable();
