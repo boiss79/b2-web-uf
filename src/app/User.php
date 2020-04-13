@@ -2,13 +2,15 @@
 
 namespace App;
 
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_name', 'last_name', 'email', 'password', 'description', 'url_picture', 'birthday'
     ];
 
     /**
@@ -36,4 +38,36 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getFullNameAttribute() {
+        return "{$this->first_name} {$this->last_name}";
+    }
+
+    /**
+     * Get products associated with the user.
+     */
+    public function products() {
+        return $this->hasMany('App\Product', 'owner_id');
+    }
+
+    /**
+     * Return the number of its product
+     *
+     * @return int
+    */ 
+    public function nbProducts() {
+        $products = $this->hasMany('App\Product', 'owner_id');
+        return $products->count();
+    }
+
+    /**
+     * Get products associated with the user.
+     */
+    public function productPurchased() {
+        return $this->hasMany('App\ProductPurchased', 'owner_id');
+    }
+
+    public function orders() {
+        return $this->hasMany('App\Order', 'user_id');
+    }
 }
