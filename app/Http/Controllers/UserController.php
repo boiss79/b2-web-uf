@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Order;
 use App\Product;
+use App\ProductPurchased;
 use App\Http\Requests\UpdateUser;
 use App\Http\Requests\UpdateEmail;
 use Illuminate\Support\Facades\Auth;
@@ -125,6 +126,9 @@ class UserController extends Controller
         
         // Check if user can destroy his account
         $this->authorize('delete', $authenticatedUser);
+
+        ProductPurchased::where(['owner_id' => Auth::id()])->update(['owner_id' => null]);
+
         $authenticatedUser->delete();
 
         return redirect(route('home'))->with('green', 'Votre compte a bien été supprimé.');
