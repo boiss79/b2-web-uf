@@ -29,7 +29,7 @@ class CreateProductPurchasedTable extends Migration
 
 
             $table->foreign('category_id')->references('id')->on('product_categories')->onDelete('cascade');
-            $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('owner_id')->references('id')->on('users');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->foreign('buyer_id')->references('id')->on('users');
             $table->foreign('product_id')->references('id')->on('products');
