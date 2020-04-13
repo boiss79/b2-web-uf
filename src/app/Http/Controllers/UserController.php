@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Order;
+use App\Product;
 use App\Http\Requests\UpdateUser;
 use App\Http\Requests\UpdateEmail;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +23,7 @@ class UserController extends Controller
     {
         return view('users.profile.show', [
             'user' => $user,
-            'products' => $user->products
+            'products' => Product::whereNotNull(['published_at'])->where(['owner_id' => $user->id])->get()
         ]);
     }
 
