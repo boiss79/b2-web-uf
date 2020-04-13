@@ -20,13 +20,13 @@ class CreateProductsTable extends Migration
             $table->float('price');
             $table->string('url_sheet');
             $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('owner_id');
+            $table->unsignedBigInteger('owner_id')->nullable();
             $table->dateTime('published_at')->nullable();
             $table->timestamps();
 
 
             $table->foreign('category_id')->references('id')->on('product_categories')->onDelete('cascade');
-            $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('owner_id')->references('id')->on('users');
         });
     }
 
