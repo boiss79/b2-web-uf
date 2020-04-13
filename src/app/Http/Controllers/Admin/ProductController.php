@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Product;
 use App\ProductComment;
 use App\ProductCategory;
+use App\ProductPurchased;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -39,6 +40,14 @@ class ProductController extends Controller
     }
 
     public function destroy(Product $product) {
+
+        $productIsPurchased = ProductPurchased::where(['product_id' => $product->id])->first();
+        
+        if ($productIsPurchased) {
+            $product->update(['published_at' => null]);
+            return redirect()->route('products.index')->with('green', 'Le produit a bien été supprimé.');
+        }
+
         Storage::delete($product->url_sheet);
         $product->delete();
 
