@@ -45,7 +45,7 @@ class ProductController extends Controller
         
         if ($productIsPurchased) {
             $product->update(['published_at' => null]);
-            return redirect()->route('products.index')->with('green', 'Le produit a bien été supprimé.');
+            return redirect()->route('admin.products.index')->with('green', 'Le produit a bien été supprimé.');
         }
 
         Storage::delete($product->url_sheet);
