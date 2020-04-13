@@ -11,7 +11,7 @@
         <div class="grid grid-cols-2 gap-10 mt-10">
             <div>
                 <p>{{ $product->description }}</p>
-                <a href="#" class="inline-block mt-5 bg-blue-500 py-2 rounded-md shadow-md hover:bg-blue-400 px-3 text-white">Télécharger la fiche</a>
+                <a href="{{ route('admin.products.file.download', Str::replaceArray('products/', [''], $product->url_sheet)) }}" class="inline-block px-3 py-2 bg-blue-500 rounded shadow text-white hover:bg-blue-400 mr-3">Télécharger la fiche</a>
             </div>
 
             <div class="text-center">

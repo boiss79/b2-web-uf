@@ -31,6 +31,10 @@ class ProductController extends Controller
         ]);
     }
 
+    public function download($filename) {
+        return Storage::download('products/' . $filename);
+    }
+
     public function update(Product $product) {
         $product->update([
             'published_at' => now()
@@ -40,6 +44,7 @@ class ProductController extends Controller
     }
 
     public function destroy(Product $product) {
+        ProductComment::where(['product_id' => $product->id])->delete();
 
         $productIsPurchased = ProductPurchased::where(['product_id' => $product->id])->first();
         

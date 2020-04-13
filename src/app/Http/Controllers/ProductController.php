@@ -147,6 +147,8 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $this->authorize('delete', $product);
+        
+        ProductComment::where(['product_id' => $product->id])->delete();
 
         $productIsPurchased = ProductPurchased::where(['product_id' => $product->id])->first();
         
@@ -154,6 +156,7 @@ class ProductController extends Controller
             $product->update(['published_at' => null]);
             return redirect()->route('products.index')->with('green', 'Le produit a bien été supprimé.');
         }
+
 
         Storage::delete($product->url_sheet);
         $product->delete();

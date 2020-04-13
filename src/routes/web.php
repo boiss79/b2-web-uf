@@ -93,6 +93,7 @@ Route::group(['middleware' => 'role:admin|moderator'], function () {
     Route::get('/admin/products/{product}', 'Admin\ProductController@show')->name('admin.products.show');
     Route::put('/admin/products/{product}', 'Admin\ProductController@update')->name('admin.products.update');
     Route::delete('/admin/products/{product}', 'Admin\ProductController@destroy')->name('admin.products.destroy');
+    Route::get('/admin/storage/products/{filename}', 'Admin\ProductController@download')->name('admin.products.file.download');
 
     // Categories
     Route::get('/admin/categories', 'Admin\ProductCategoryController@index')->name('admin.categories.index');
